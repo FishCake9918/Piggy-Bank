@@ -273,7 +273,7 @@
             // 
             // splitContainer1.Panel2
             // 
-            splitContainer1.Panel2.BackColor = Color.FromArgb(223, 247, 232);
+            splitContainer1.Panel2.BackColor = Color.FromArgb(227, 242, 253);
             splitContainer1.Panel2.Controls.Add(panel4);
             splitContainer1.Panel2.Controls.Add(panel1);
             splitContainer1.Size = new Size(1514, 716);
@@ -389,7 +389,7 @@
             // 
             // panel1
             // 
-            panel1.BackColor = Color.FromArgb(223, 247, 232);
+            panel1.BackColor = Color.FromArgb(227, 242, 253);
             panel1.Controls.Add(panel3);
             panel1.Controls.Add(panel2);
             panel1.Controls.Add(label2);
