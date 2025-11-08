@@ -59,5 +59,15 @@ namespace Demo_Layout.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap blank_default_pfp_wue0zko1dfxs9z2c {
+            get {
+                object obj = ResourceManager.GetObject("blank-default-pfp-wue0zko1dfxs9z2c", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }
