@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             menuStrip1 = new MenuStrip();
             accountToolStripMenuItem = new ToolStripMenuItem();
@@ -53,136 +54,137 @@
             minimizeToolStripMenuItem = new ToolStripMenuItem();
             documentationToolStripMenuItem = new ToolStripMenuItem();
             keyboardShortcutsToolStripMenuItem = new ToolStripMenuItem();
-            toolStrip1 = new ToolStrip();
-            toolStripLabel1 = new ToolStripLabel();
-            toolStripButton6 = new ToolStripButton();
-            toolStripButton7 = new ToolStripButton();
-            toolStripButton2 = new ToolStripButton();
-            toolStripButton1 = new ToolStripButton();
-            toolStripButton3 = new ToolStripButton();
-            toolStripSeparator2 = new ToolStripSeparator();
-            toolStripLabel2 = new ToolStripLabel();
-            toolStripProgressBar1 = new ToolStripProgressBar();
-            pnlMenu = new Panel();
-            button6 = new Button();
-            button5 = new Button();
-            button4 = new Button();
-            button3 = new Button();
-            button2 = new Button();
+            kryptonCustomPaletteBase1 = new Krypton.Toolkit.KryptonCustomPaletteBase(components);
             button1 = new Button();
-            pnlContent = new Panel();
-            panel4 = new Panel();
+            button2 = new Button();
+            button3 = new Button();
+            button4 = new Button();
+            button5 = new Button();
+            button6 = new Button();
+            pnlMenu = new Panel();
             panel1 = new Panel();
-            panel3 = new Panel();
-            button8 = new Button();
-            button7 = new Button();
+            picUserProfile = new PictureBox();
             panel2 = new Panel();
+            button9 = new Button();
+            button7 = new Button();
+            button8 = new Button();
+            pnlHienThi = new Panel();
+            panel3 = new Panel();
             pictureBox1 = new PictureBox();
-            textBox1 = new TextBox();
-            label2 = new Label();
-            label1 = new Label();
+            button14 = new Button();
+            button13 = new Button();
+            button12 = new Button();
+            button11 = new Button();
+            scThemTaiKhoan = new Button();
+            notifyIcon = new NotifyIcon(components);
             menuStrip1.SuspendLayout();
-            toolStrip1.SuspendLayout();
             pnlMenu.SuspendLayout();
-            pnlContent.SuspendLayout();
             panel1.SuspendLayout();
-            panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picUserProfile).BeginInit();
             panel2.SuspendLayout();
+            panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // menuStrip1
             // 
-            menuStrip1.BackColor = Color.FromArgb(227, 242, 253);
+            menuStrip1.BackColor = Color.FromArgb(250, 110, 6);
+            menuStrip1.Dock = DockStyle.None;
+            menuStrip1.Font = new Font("Segoe UI", 9F);
             menuStrip1.ImageScalingSize = new Size(20, 20);
             menuStrip1.Items.AddRange(new ToolStripItem[] { accountToolStripMenuItem, editToolStripMenuItem, toolsToolStripMenuItem, helpToolStripMenuItem });
-            menuStrip1.Location = new Point(0, 0);
+            menuStrip1.Location = new Point(9, 5);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Padding = new Padding(8, 2, 0, 2);
-            menuStrip1.Size = new Size(1514, 33);
+            menuStrip1.Padding = new Padding(7, 1, 0, 1);
+            menuStrip1.RenderMode = ToolStripRenderMode.Professional;
+            menuStrip1.Size = new Size(252, 26);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
             // accountToolStripMenuItem
             // 
             accountToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { signInToolStripMenuItem, signOutToolStripMenuItem, exitToolStripMenuItem });
+            accountToolStripMenuItem.ForeColor = SystemColors.ControlLightLight;
             accountToolStripMenuItem.Name = "accountToolStripMenuItem";
-            accountToolStripMenuItem.Size = new Size(98, 29);
+            accountToolStripMenuItem.Size = new Size(81, 24);
             accountToolStripMenuItem.Text = "Account ";
             // 
             // signInToolStripMenuItem
             // 
             signInToolStripMenuItem.Name = "signInToolStripMenuItem";
-            signInToolStripMenuItem.Size = new Size(181, 34);
+            signInToolStripMenuItem.Size = new Size(147, 26);
             signInToolStripMenuItem.Text = "Sign in ";
             // 
             // signOutToolStripMenuItem
             // 
             signOutToolStripMenuItem.Name = "signOutToolStripMenuItem";
-            signOutToolStripMenuItem.Size = new Size(181, 34);
+            signOutToolStripMenuItem.Size = new Size(147, 26);
             signOutToolStripMenuItem.Text = "Sign out";
             // 
             // exitToolStripMenuItem
             // 
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new Size(181, 34);
+            exitToolStripMenuItem.Size = new Size(147, 26);
             exitToolStripMenuItem.Text = "Exit";
             // 
             // editToolStripMenuItem
             // 
             editToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { undoToolStripMenuItem1, redoToolStripMenuItem1 });
+            editToolStripMenuItem.ForeColor = SystemColors.ButtonHighlight;
             editToolStripMenuItem.Name = "editToolStripMenuItem";
-            editToolStripMenuItem.Size = new Size(58, 29);
+            editToolStripMenuItem.Size = new Size(49, 24);
             editToolStripMenuItem.Text = "Edit";
             // 
             // undoToolStripMenuItem1
             // 
             undoToolStripMenuItem1.Name = "undoToolStripMenuItem1";
-            undoToolStripMenuItem1.Size = new Size(158, 34);
+            undoToolStripMenuItem1.Size = new Size(128, 26);
             undoToolStripMenuItem1.Text = "Undo";
             // 
             // redoToolStripMenuItem1
             // 
             redoToolStripMenuItem1.Name = "redoToolStripMenuItem1";
-            redoToolStripMenuItem1.Size = new Size(158, 34);
+            redoToolStripMenuItem1.Size = new Size(128, 26);
             redoToolStripMenuItem1.Text = "Redo";
             // 
             // toolsToolStripMenuItem
             // 
             toolsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { findSchedulesToolStripMenuItem1, minimizeToolStripMenuItem1 });
+            toolsToolStripMenuItem.ForeColor = SystemColors.ButtonHighlight;
             toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            toolsToolStripMenuItem.Size = new Size(69, 29);
+            toolsToolStripMenuItem.Size = new Size(58, 24);
             toolsToolStripMenuItem.Text = "Tools";
             // 
             // findSchedulesToolStripMenuItem1
             // 
             findSchedulesToolStripMenuItem1.Name = "findSchedulesToolStripMenuItem1";
-            findSchedulesToolStripMenuItem1.Size = new Size(230, 58);
+            findSchedulesToolStripMenuItem1.Size = new Size(188, 44);
             findSchedulesToolStripMenuItem1.Text = "Find schedules";
             // 
             // minimizeToolStripMenuItem1
             // 
             minimizeToolStripMenuItem1.Name = "minimizeToolStripMenuItem1";
-            minimizeToolStripMenuItem1.Size = new Size(230, 58);
+            minimizeToolStripMenuItem1.Size = new Size(188, 44);
             minimizeToolStripMenuItem1.Text = "Minimize\n";
             // 
             // helpToolStripMenuItem
             // 
             helpToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { documentationToolStripMenuItem1, keyboardShortcutsToolStripMenuItem1 });
+            helpToolStripMenuItem.ForeColor = SystemColors.Control;
             helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            helpToolStripMenuItem.Size = new Size(65, 29);
+            helpToolStripMenuItem.Size = new Size(55, 24);
             helpToolStripMenuItem.Text = "Help";
             // 
             // documentationToolStripMenuItem1
             // 
             documentationToolStripMenuItem1.Name = "documentationToolStripMenuItem1";
-            documentationToolStripMenuItem1.Size = new Size(270, 34);
+            documentationToolStripMenuItem1.Size = new Size(221, 26);
             documentationToolStripMenuItem1.Text = "Documentation";
             // 
             // keyboardShortcutsToolStripMenuItem1
             // 
             keyboardShortcutsToolStripMenuItem1.Name = "keyboardShortcutsToolStripMenuItem1";
-            keyboardShortcutsToolStripMenuItem1.Size = new Size(270, 34);
+            keyboardShortcutsToolStripMenuItem1.Size = new Size(221, 26);
             keyboardShortcutsToolStripMenuItem1.Text = "Keyboard Shortcuts";
             // 
             // đăngNhậpToolStripMenuItem
@@ -235,86 +237,113 @@
             keyboardShortcutsToolStripMenuItem.Name = "keyboardShortcutsToolStripMenuItem";
             keyboardShortcutsToolStripMenuItem.Size = new Size(32, 19);
             // 
-            // toolStrip1
+            // kryptonCustomPaletteBase1
             // 
-            toolStrip1.BackColor = SystemColors.InactiveBorder;
-            toolStrip1.ImageScalingSize = new Size(50, 50);
-            toolStrip1.ImeMode = ImeMode.On;
-            toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripLabel1, toolStripButton6, toolStripButton7, toolStripButton2, toolStripButton1, toolStripButton3, toolStripSeparator2, toolStripLabel2, toolStripProgressBar1 });
-            toolStrip1.Location = new Point(0, 33);
-            toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(1514, 59);
-            toolStrip1.Stretch = true;
-            toolStrip1.TabIndex = 1;
-            toolStrip1.Text = "toolStrip1";
+            kryptonCustomPaletteBase1.UseThemeFormChromeBorderWidth = Krypton.Toolkit.InheritBool.True;
             // 
-            // toolStripLabel1
+            // button1
             // 
-            toolStripLabel1.Name = "toolStripLabel1";
-            toolStripLabel1.Size = new Size(0, 54);
+            button1.BackColor = Color.FromArgb(82, 108, 91);
+            button1.FlatAppearance.BorderSize = 0;
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.Font = new Font("Segoe UI Semibold", 13F, FontStyle.Bold);
+            button1.ForeColor = Color.Cyan;
+            button1.Image = (Image)resources.GetObject("button1.Image");
+            button1.ImageAlign = ContentAlignment.MiddleLeft;
+            button1.Location = new Point(9, 6);
+            button1.Name = "button1";
+            button1.Size = new Size(301, 70);
+            button1.TabIndex = 0;
+            button1.Text = "  Báo cáo";
+            button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
             // 
-            // toolStripButton6
+            // button2
             // 
-            toolStripButton6.Image = (Image)resources.GetObject("toolStripButton6.Image");
-            toolStripButton6.ImageTransparentColor = Color.Magenta;
-            toolStripButton6.Name = "toolStripButton6";
-            toolStripButton6.Size = new Size(279, 54);
-            toolStripButton6.Text = "Thêm tài khoản thanh toán";
+            button2.BackColor = Color.FromArgb(82, 108, 91);
+            button2.FlatAppearance.BorderSize = 0;
+            button2.FlatStyle = FlatStyle.Flat;
+            button2.Font = new Font("Segoe UI Semibold", 13F, FontStyle.Bold);
+            button2.ForeColor = Color.Cyan;
+            button2.Image = (Image)resources.GetObject("button2.Image");
+            button2.ImageAlign = ContentAlignment.MiddleLeft;
+            button2.Location = new Point(9, 82);
+            button2.Name = "button2";
+            button2.Size = new Size(301, 70);
+            button2.TabIndex = 1;
+            button2.Text = "  Quản lý giao dịch";
+            button2.UseVisualStyleBackColor = false;
+            button2.Click += button2_Click;
             // 
-            // toolStripButton7
+            // button3
             // 
-            toolStripButton7.Image = (Image)resources.GetObject("toolStripButton7.Image");
-            toolStripButton7.ImageTransparentColor = Color.Magenta;
-            toolStripButton7.Name = "toolStripButton7";
-            toolStripButton7.Size = new Size(188, 54);
-            toolStripButton7.Text = "Thêm giao dịch";
+            button3.BackColor = Color.FromArgb(82, 108, 91);
+            button3.FlatAppearance.BorderSize = 0;
+            button3.FlatStyle = FlatStyle.Flat;
+            button3.Font = new Font("Segoe UI Semibold", 13F, FontStyle.Bold);
+            button3.ForeColor = Color.Cyan;
+            button3.Image = (Image)resources.GetObject("button3.Image");
+            button3.ImageAlign = ContentAlignment.MiddleLeft;
+            button3.Location = new Point(9, 158);
+            button3.Name = "button3";
+            button3.Size = new Size(301, 70);
+            button3.TabIndex = 2;
+            button3.Text = "Ngân sách";
+            button3.UseVisualStyleBackColor = false;
+            button3.Click += button3_Click;
             // 
-            // toolStripButton2
+            // button4
             // 
-            toolStripButton2.Image = (Image)resources.GetObject("toolStripButton2.Image");
-            toolStripButton2.ImageTransparentColor = Color.Magenta;
-            toolStripButton2.Name = "toolStripButton2";
-            toolStripButton2.Size = new Size(162, 54);
-            toolStripButton2.Text = "Thêm nhóm";
+            button4.BackColor = Color.FromArgb(82, 108, 91);
+            button4.FlatAppearance.BorderSize = 0;
+            button4.FlatStyle = FlatStyle.Flat;
+            button4.Font = new Font("Segoe UI Semibold", 13F, FontStyle.Bold);
+            button4.ForeColor = Color.Cyan;
+            button4.Image = (Image)resources.GetObject("button4.Image");
+            button4.ImageAlign = ContentAlignment.MiddleLeft;
+            button4.Location = new Point(9, 234);
+            button4.Name = "button4";
+            button4.Size = new Size(301, 70);
+            button4.TabIndex = 3;
+            button4.Text = "  Danh mục chi tiêu";
+            button4.UseVisualStyleBackColor = false;
             // 
-            // toolStripButton1
+            // button5
             // 
-            toolStripButton1.Image = (Image)resources.GetObject("toolStripButton1.Image");
-            toolStripButton1.ImageTransparentColor = Color.Magenta;
-            toolStripButton1.Name = "toolStripButton1";
-            toolStripButton1.Size = new Size(195, 54);
-            toolStripButton1.Text = "Thêm ngân sách";
+            button5.BackColor = Color.FromArgb(82, 108, 91);
+            button5.FlatAppearance.BorderSize = 0;
+            button5.FlatStyle = FlatStyle.Flat;
+            button5.Font = new Font("Segoe UI Semibold", 13F, FontStyle.Bold);
+            button5.ForeColor = Color.Cyan;
+            button5.Image = (Image)resources.GetObject("button5.Image");
+            button5.ImageAlign = ContentAlignment.MiddleLeft;
+            button5.Location = new Point(9, 310);
+            button5.Name = "button5";
+            button5.Size = new Size(301, 70);
+            button5.TabIndex = 4;
+            button5.Text = "  Đối tượng giao dịch";
+            button5.UseVisualStyleBackColor = false;
             // 
-            // toolStripButton3
+            // button6
             // 
-            toolStripButton3.Image = (Image)resources.GetObject("toolStripButton3.Image");
-            toolStripButton3.ImageTransparentColor = Color.Magenta;
-            toolStripButton3.Name = "toolStripButton3";
-            toolStripButton3.Size = new Size(164, 54);
-            toolStripButton3.Text = "Tạo báo cáo";
-            // 
-            // toolStripSeparator2
-            // 
-            toolStripSeparator2.Name = "toolStripSeparator2";
-            toolStripSeparator2.Size = new Size(6, 59);
-            // 
-            // toolStripLabel2
-            // 
-            toolStripLabel2.Alignment = ToolStripItemAlignment.Right;
-            toolStripLabel2.Name = "toolStripLabel2";
-            toolStripLabel2.Size = new Size(257, 54);
-            toolStripLabel2.Text = "👤Chào bạn, [Tên người dùng]";
-            // 
-            // toolStripProgressBar1
-            // 
-            toolStripProgressBar1.Alignment = ToolStripItemAlignment.Right;
-            toolStripProgressBar1.Name = "toolStripProgressBar1";
-            toolStripProgressBar1.Size = new Size(100, 54);
+            button6.BackColor = Color.FromArgb(82, 108, 91);
+            button6.FlatAppearance.BorderSize = 0;
+            button6.FlatStyle = FlatStyle.Flat;
+            button6.Font = new Font("Segoe UI Semibold", 13F, FontStyle.Bold);
+            button6.ForeColor = Color.Cyan;
+            button6.Image = (Image)resources.GetObject("button6.Image");
+            button6.ImageAlign = ContentAlignment.MiddleLeft;
+            button6.Location = new Point(9, 386);
+            button6.Name = "button6";
+            button6.Size = new Size(301, 70);
+            button6.TabIndex = 5;
+            button6.Text = "  Tài khoản thanh toán";
+            button6.UseVisualStyleBackColor = false;
             // 
             // pnlMenu
             // 
-            pnlMenu.AutoScroll = true;
-            pnlMenu.BackColor = SystemColors.ActiveCaption;
+            pnlMenu.BackColor = Color.FromArgb(82, 108, 91);
+            pnlMenu.Controls.Add(panel1);
             pnlMenu.Controls.Add(button6);
             pnlMenu.Controls.Add(button5);
             pnlMenu.Controls.Add(button4);
@@ -322,292 +351,238 @@
             pnlMenu.Controls.Add(button2);
             pnlMenu.Controls.Add(button1);
             pnlMenu.Dock = DockStyle.Left;
-            pnlMenu.Location = new Point(0, 92);
-            pnlMenu.Margin = new Padding(4);
+            pnlMenu.Location = new Point(0, 85);
             pnlMenu.Name = "pnlMenu";
-            pnlMenu.Size = new Size(367, 716);
+            pnlMenu.Size = new Size(310, 611);
             pnlMenu.TabIndex = 2;
-            // 
-            // button6
-            // 
-            button6.Dock = DockStyle.Top;
-            button6.Font = new Font("Courier New", 13F, FontStyle.Bold);
-            button6.Image = (Image)resources.GetObject("button6.Image");
-            button6.ImageAlign = ContentAlignment.MiddleLeft;
-            button6.Location = new Point(0, 355);
-            button6.Margin = new Padding(4);
-            button6.Name = "button6";
-            button6.Size = new Size(367, 71);
-            button6.TabIndex = 5;
-            button6.Text = "Tài khoản thanh toán";
-            button6.TextAlign = ContentAlignment.MiddleRight;
-            button6.TextImageRelation = TextImageRelation.ImageBeforeText;
-            button6.UseVisualStyleBackColor = true;
-            // 
-            // button5
-            // 
-            button5.Dock = DockStyle.Top;
-            button5.Font = new Font("Courier New", 13F, FontStyle.Bold);
-            button5.Image = (Image)resources.GetObject("button5.Image");
-            button5.ImageAlign = ContentAlignment.MiddleLeft;
-            button5.Location = new Point(0, 284);
-            button5.Margin = new Padding(4);
-            button5.Name = "button5";
-            button5.Size = new Size(367, 71);
-            button5.TabIndex = 4;
-            button5.Text = "Đối tượng giao dịch";
-            button5.TextAlign = ContentAlignment.MiddleRight;
-            button5.TextImageRelation = TextImageRelation.ImageBeforeText;
-            button5.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            button4.Dock = DockStyle.Top;
-            button4.Font = new Font("Courier New", 13F, FontStyle.Bold);
-            button4.Image = (Image)resources.GetObject("button4.Image");
-            button4.ImageAlign = ContentAlignment.MiddleLeft;
-            button4.Location = new Point(0, 213);
-            button4.Margin = new Padding(4);
-            button4.Name = "button4";
-            button4.Size = new Size(367, 71);
-            button4.TabIndex = 3;
-            button4.Text = "Danh mục chi tiêu";
-            button4.TextAlign = ContentAlignment.MiddleRight;
-            button4.TextImageRelation = TextImageRelation.ImageBeforeText;
-            button4.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            button3.Dock = DockStyle.Top;
-            button3.Font = new Font("Courier New", 13F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button3.Image = (Image)resources.GetObject("button3.Image");
-            button3.ImageAlign = ContentAlignment.MiddleLeft;
-            button3.Location = new Point(0, 142);
-            button3.Margin = new Padding(4);
-            button3.Name = "button3";
-            button3.Size = new Size(367, 71);
-            button3.TabIndex = 2;
-            button3.Text = "Lập ngân sách";
-            button3.TextAlign = ContentAlignment.MiddleRight;
-            button3.TextImageRelation = TextImageRelation.ImageBeforeText;
-            button3.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            button2.Dock = DockStyle.Top;
-            button2.Font = new Font("Courier New", 13F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button2.Image = (Image)resources.GetObject("button2.Image");
-            button2.ImageAlign = ContentAlignment.MiddleLeft;
-            button2.Location = new Point(0, 71);
-            button2.Margin = new Padding(4);
-            button2.Name = "button2";
-            button2.Size = new Size(367, 71);
-            button2.TabIndex = 1;
-            button2.Text = "Quản lý giao dịch";
-            button2.TextAlign = ContentAlignment.MiddleRight;
-            button2.TextImageRelation = TextImageRelation.ImageBeforeText;
-            button2.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            button1.Dock = DockStyle.Top;
-            button1.Font = new Font("Courier New", 13.5F, FontStyle.Bold);
-            button1.Image = (Image)resources.GetObject("button1.Image");
-            button1.ImageAlign = ContentAlignment.MiddleLeft;
-            button1.Location = new Point(0, 0);
-            button1.Margin = new Padding(4);
-            button1.Name = "button1";
-            button1.Size = new Size(367, 71);
-            button1.TabIndex = 0;
-            button1.Text = "Báo cáo ";
-            button1.TextImageRelation = TextImageRelation.ImageBeforeText;
-            button1.UseVisualStyleBackColor = true;
-            // 
-            // pnlContent
-            // 
-            pnlContent.BackColor = Color.FromArgb(227, 242, 253);
-            pnlContent.Controls.Add(panel4);
-            pnlContent.Controls.Add(panel1);
-            pnlContent.Dock = DockStyle.Fill;
-            pnlContent.Location = new Point(367, 92);
-            pnlContent.Margin = new Padding(4);
-            pnlContent.Name = "pnlContent";
-            pnlContent.Size = new Size(1147, 716);
-            pnlContent.TabIndex = 3;
-            // 
-            // panel4
-            // 
-            panel4.BackColor = Color.FromArgb(255, 128, 128);
-            panel4.Dock = DockStyle.Top;
-            panel4.Location = new Point(0, 210);
-            panel4.Margin = new Padding(4);
-            panel4.Name = "panel4";
-            panel4.Size = new Size(1147, 20);
-            panel4.TabIndex = 1;
             // 
             // panel1
             // 
-            panel1.BackColor = Color.FromArgb(227, 242, 253);
-            panel1.Controls.Add(panel3);
-            panel1.Controls.Add(panel2);
-            panel1.Controls.Add(label2);
-            panel1.Controls.Add(label1);
-            panel1.Dock = DockStyle.Top;
-            panel1.Location = new Point(0, 0);
-            panel1.Margin = new Padding(4);
+            panel1.BackColor = SystemColors.ActiveBorder;
+            panel1.Controls.Add(picUserProfile);
+            panel1.Dock = DockStyle.Bottom;
+            panel1.Location = new Point(0, 531);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1147, 210);
-            panel1.TabIndex = 0;
+            panel1.Size = new Size(310, 80);
+            panel1.TabIndex = 6;
             // 
-            // panel3
+            // picUserProfile
             // 
-            panel3.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            panel3.Controls.Add(button8);
-            panel3.Controls.Add(button7);
-            panel3.Location = new Point(907, 161);
-            panel3.Margin = new Padding(4);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(240, 49);
-            panel3.TabIndex = 5;
-            // 
-            // button8
-            // 
-            button8.Image = (Image)resources.GetObject("button8.Image");
-            button8.Location = new Point(10, -1);
-            button8.Margin = new Padding(4);
-            button8.Name = "button8";
-            button8.Size = new Size(98, 51);
-            button8.TabIndex = 7;
-            button8.Text = "Thêm";
-            button8.TextAlign = ContentAlignment.MiddleLeft;
-            button8.TextImageRelation = TextImageRelation.ImageBeforeText;
-            button8.UseVisualStyleBackColor = true;
-            // 
-            // button7
-            // 
-            button7.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            button7.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button7.Location = new Point(141, -1);
-            button7.Margin = new Padding(4);
-            button7.Name = "button7";
-            button7.Size = new Size(99, 50);
-            button7.TabIndex = 4;
-            button7.Text = "CRUD";
-            button7.UseVisualStyleBackColor = true;
+            picUserProfile.BackColor = SystemColors.ActiveBorder;
+            picUserProfile.Image = (Image)resources.GetObject("picUserProfile.Image");
+            picUserProfile.Location = new Point(12, 12);
+            picUserProfile.Name = "picUserProfile";
+            picUserProfile.Size = new Size(56, 56);
+            picUserProfile.SizeMode = PictureBoxSizeMode.Zoom;
+            picUserProfile.TabIndex = 2;
+            picUserProfile.TabStop = false;
+            picUserProfile.Click += pictureBox1_Click;
             // 
             // panel2
             // 
-            panel2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            panel2.Controls.Add(pictureBox1);
-            panel2.Controls.Add(textBox1);
-            panel2.Location = new Point(0, 161);
-            panel2.Margin = new Padding(4);
+            panel2.BackColor = Color.FromArgb(250, 110, 6);
+            panel2.Controls.Add(menuStrip1);
+            panel2.Controls.Add(button9);
+            panel2.Controls.Add(button7);
+            panel2.Controls.Add(button8);
+            panel2.Dock = DockStyle.Top;
+            panel2.Location = new Point(0, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(871, 49);
-            panel2.TabIndex = 3;
+            panel2.Size = new Size(1232, 34);
+            panel2.TabIndex = 0;
+            panel2.MouseDown += panel2_MouseDown;
+            // 
+            // button9
+            // 
+            button9.Dock = DockStyle.Right;
+            button9.FlatAppearance.BorderSize = 0;
+            button9.FlatStyle = FlatStyle.Flat;
+            button9.Image = (Image)resources.GetObject("button9.Image");
+            button9.Location = new Point(1130, 0);
+            button9.Name = "button9";
+            button9.Size = new Size(34, 34);
+            button9.TabIndex = 2;
+            button9.UseVisualStyleBackColor = true;
+            button9.Click += button9_Click;
+            // 
+            // button7
+            // 
+            button7.Dock = DockStyle.Right;
+            button7.FlatAppearance.BorderSize = 0;
+            button7.FlatStyle = FlatStyle.Flat;
+            button7.Image = (Image)resources.GetObject("button7.Image");
+            button7.Location = new Point(1164, 0);
+            button7.Name = "button7";
+            button7.Size = new Size(34, 34);
+            button7.TabIndex = 0;
+            button7.UseVisualStyleBackColor = true;
+            button7.Click += button7_Click;
+            // 
+            // button8
+            // 
+            button8.Dock = DockStyle.Right;
+            button8.FlatAppearance.BorderSize = 0;
+            button8.FlatStyle = FlatStyle.Flat;
+            button8.Image = (Image)resources.GetObject("button8.Image");
+            button8.Location = new Point(1198, 0);
+            button8.Name = "button8";
+            button8.Size = new Size(34, 34);
+            button8.TabIndex = 1;
+            button8.UseVisualStyleBackColor = true;
+            button8.Click += button8_Click;
+            // 
+            // pnlHienThi
+            // 
+            pnlHienThi.BackColor = Color.FromArgb(220, 220, 187);
+            pnlHienThi.Dock = DockStyle.Fill;
+            pnlHienThi.Location = new Point(310, 85);
+            pnlHienThi.Name = "pnlHienThi";
+            pnlHienThi.Size = new Size(922, 611);
+            pnlHienThi.TabIndex = 3;
+            // 
+            // panel3
+            // 
+            panel3.BackColor = Color.FromArgb(36, 76, 60);
+            panel3.Controls.Add(pictureBox1);
+            panel3.Controls.Add(button14);
+            panel3.Controls.Add(button13);
+            panel3.Controls.Add(button12);
+            panel3.Controls.Add(button11);
+            panel3.Controls.Add(scThemTaiKhoan);
+            panel3.Dock = DockStyle.Top;
+            panel3.Location = new Point(0, 34);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(1232, 51);
+            panel3.TabIndex = 0;
             // 
             // pictureBox1
             // 
-            pictureBox1.Dock = DockStyle.Left;
-            pictureBox1.Location = new Point(0, 0);
-            pictureBox1.Margin = new Padding(4);
+            pictureBox1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(1180, 6);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(59, 49);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox1.TabIndex = 3;
+            pictureBox1.Size = new Size(40, 40);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 5;
             pictureBox1.TabStop = false;
             // 
-            // textBox1
+            // button14
             // 
-            textBox1.Dock = DockStyle.Right;
-            textBox1.Font = new Font("Verdana", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox1.Location = new Point(75, 0);
-            textBox1.Margin = new Padding(4);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(796, 47);
-            textBox1.TabIndex = 2;
+            button14.FlatAppearance.BorderSize = 0;
+            button14.FlatStyle = FlatStyle.Flat;
+            button14.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            button14.ForeColor = Color.Cyan;
+            button14.Image = (Image)resources.GetObject("button14.Image");
+            button14.ImageAlign = ContentAlignment.MiddleLeft;
+            button14.Location = new Point(753, 7);
+            button14.Name = "button14";
+            button14.Size = new Size(133, 38);
+            button14.TabIndex = 4;
+            button14.Text = "Tạo báo cáo";
+            button14.TextAlign = ContentAlignment.MiddleRight;
+            button14.UseVisualStyleBackColor = true;
             // 
-            // label2
+            // button13
             // 
-            label2.AutoSize = true;
-            label2.Dock = DockStyle.Top;
-            label2.Font = new Font("Cambria", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(0, 0);
-            label2.Margin = new Padding(4, 0, 4, 0);
-            label2.Name = "label2";
-            label2.Size = new Size(387, 84);
-            label2.TabIndex = 1;
-            label2.Text = "[Tên form]";
-            label2.TextAlign = ContentAlignment.MiddleLeft;
+            button13.FlatAppearance.BorderSize = 0;
+            button13.FlatStyle = FlatStyle.Flat;
+            button13.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            button13.ForeColor = Color.Cyan;
+            button13.Image = (Image)resources.GetObject("button13.Image");
+            button13.ImageAlign = ContentAlignment.MiddleLeft;
+            button13.Location = new Point(583, 7);
+            button13.Name = "button13";
+            button13.Size = new Size(164, 38);
+            button13.TabIndex = 3;
+            button13.Text = "Thêm ngân sách";
+            button13.TextAlign = ContentAlignment.MiddleRight;
+            button13.UseVisualStyleBackColor = true;
             // 
-            // label1
+            // button12
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(240, 92);
-            label1.Margin = new Padding(4, 0, 4, 0);
-            label1.Name = "label1";
-            label1.Size = new Size(0, 25);
-            label1.TabIndex = 0;
+            button12.FlatAppearance.BorderSize = 0;
+            button12.FlatStyle = FlatStyle.Flat;
+            button12.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            button12.ForeColor = Color.Cyan;
+            button12.Image = (Image)resources.GetObject("button12.Image");
+            button12.ImageAlign = ContentAlignment.MiddleLeft;
+            button12.Location = new Point(416, 7);
+            button12.Name = "button12";
+            button12.Size = new Size(161, 38);
+            button12.TabIndex = 2;
+            button12.Text = "Thêm đối tượng";
+            button12.TextAlign = ContentAlignment.MiddleRight;
+            button12.UseVisualStyleBackColor = true;
+            // 
+            // button11
+            // 
+            button11.FlatAppearance.BorderSize = 0;
+            button11.FlatStyle = FlatStyle.Flat;
+            button11.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            button11.ForeColor = Color.Cyan;
+            button11.Image = (Image)resources.GetObject("button11.Image");
+            button11.ImageAlign = ContentAlignment.MiddleLeft;
+            button11.Location = new Point(255, 7);
+            button11.Name = "button11";
+            button11.Size = new Size(155, 38);
+            button11.TabIndex = 1;
+            button11.Text = "Thêm giao dịch";
+            button11.TextAlign = ContentAlignment.MiddleRight;
+            button11.UseVisualStyleBackColor = true;
+            // 
+            // scThemTaiKhoan
+            // 
+            scThemTaiKhoan.FlatAppearance.BorderSize = 0;
+            scThemTaiKhoan.FlatStyle = FlatStyle.Flat;
+            scThemTaiKhoan.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            scThemTaiKhoan.ForeColor = Color.Cyan;
+            scThemTaiKhoan.Image = (Image)resources.GetObject("scThemTaiKhoan.Image");
+            scThemTaiKhoan.ImageAlign = ContentAlignment.MiddleLeft;
+            scThemTaiKhoan.Location = new Point(12, 6);
+            scThemTaiKhoan.Name = "scThemTaiKhoan";
+            scThemTaiKhoan.Size = new Size(237, 38);
+            scThemTaiKhoan.TabIndex = 0;
+            scThemTaiKhoan.Text = "Thêm tài khoản thanh toán";
+            scThemTaiKhoan.TextAlign = ContentAlignment.MiddleRight;
+            scThemTaiKhoan.UseVisualStyleBackColor = true;
+            // 
+            // notifyIcon
+            // 
+            notifyIcon.Icon = (Icon)resources.GetObject("notifyIcon.Icon");
+            notifyIcon.Text = "PFMA";
             // 
             // FrmMain
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1514, 808);
-            Controls.Add(pnlContent);
+            ClientSize = new Size(1232, 696);
+            Controls.Add(pnlHienThi);
             Controls.Add(pnlMenu);
-            Controls.Add(toolStrip1);
-            Controls.Add(menuStrip1);
-            FormBorderStyle = FormBorderStyle.FixedSingle;
+            Controls.Add(panel3);
+            Controls.Add(panel2);
+            FormBorderStyle = FormBorderStyle.None;
             MainMenuStrip = menuStrip1;
-            Margin = new Padding(4);
-            MaximizeBox = false;
-            MaximumSize = new Size(1536, 864);
-            MinimumSize = new Size(1536, 864);
+            MaximumSize = new Size(1232, 696);
+            MinimumSize = new Size(1232, 696);
             Name = "FrmMain";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Trang chủ";
+            Load += FrmMain_Load;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
-            toolStrip1.ResumeLayout(false);
-            toolStrip1.PerformLayout();
             pnlMenu.ResumeLayout(false);
-            pnlContent.ResumeLayout(false);
             panel1.ResumeLayout(false);
-            panel1.PerformLayout();
-            panel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)picUserProfile).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
+            panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
 
         private MenuStrip menuStrip1;
-        private ToolStrip toolStrip1;
-        private ToolStripButton toolStripButton1;
-        private ToolStripButton toolStripButton2;
-        private ToolStripButton toolStripButton3;
-        private ToolStripSeparator toolStripSeparator2;
-        private Panel pnlMenu;
-        private Panel pnlContent;
-        private Panel panel1;
-        private Button button1;
-        private Label label1;
-        private Label label2;
-        private TextBox textBox1;
-        private Panel panel2;
-        private PictureBox pictureBox1;
-        private Button button7;
-        private Button button6;
-        private Button button5;
-        private Button button4;
-        private Button button3;
-        private Button button2;
-        private Panel panel3;
-        private Panel panel4;
         private ToolStripMenuItem đăngNhậpToolStripMenuItem;
         private ToolStripMenuItem đăngXuấtToolStripMenuItem;
         private ToolStripSeparator toolStripMenuItem1;
@@ -616,14 +591,8 @@
         private ToolStripMenuItem minimizeToolStripMenuItem;
         private ToolStripMenuItem documentationToolStripMenuItem;
         private ToolStripMenuItem keyboardShortcutsToolStripMenuItem;
-        private ToolStripLabel toolStripLabel1;
-        private Button button8;
         private ToolStripMenuItem undoToolStripMenuItem;
         private ToolStripMenuItem redoToolStripMenuItem;
-        private ToolStripButton toolStripButton6;
-        private ToolStripButton toolStripButton7;
-        private ToolStripLabel toolStripLabel2;
-        private ToolStripProgressBar toolStripProgressBar1;
         private ToolStripMenuItem accountToolStripMenuItem;
         private ToolStripMenuItem signInToolStripMenuItem;
         private ToolStripMenuItem signOutToolStripMenuItem;
@@ -637,5 +606,28 @@
         private ToolStripMenuItem helpToolStripMenuItem;
         private ToolStripMenuItem documentationToolStripMenuItem1;
         private ToolStripMenuItem keyboardShortcutsToolStripMenuItem1;
+        private Krypton.Toolkit.KryptonCustomPaletteBase kryptonCustomPaletteBase1;
+        private Button button1;
+        private Button button2;
+        private Button button3;
+        private Button button4;
+        private Button button5;
+        private Button button6;
+        private Panel pnlMenu;
+        private Panel panel2;
+        private Button button7;
+        private Button button9;
+        private Button button8;
+        private Panel pnlHienThi;
+        private Panel panel1;
+        private PictureBox picUserProfile;
+        private Panel panel3;
+        private Button button14;
+        private Button button13;
+        private Button button12;
+        private Button button11;
+        private Button scThemTaiKhoan;
+        private NotifyIcon notifyIcon;
+        private PictureBox pictureBox1;
     }
 }
