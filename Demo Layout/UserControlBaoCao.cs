@@ -16,5 +16,11 @@ namespace Demo_Layout
         {
             InitializeComponent();
         }
+
+        private void btnThem_Click(object sender, EventArgs e)
+        {
+            FormDongTaiKhoan f = new FormDongTaiKhoan();
+            f.Show();
+        }
     }
 }

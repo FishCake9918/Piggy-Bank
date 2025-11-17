@@ -43,8 +43,8 @@ namespace Demo_Layout
 
         private void btnThem_Click(object sender, EventArgs e)
         {
-            ChinhSuaPayee chinhSuaPayee = new ChinhSuaPayee();
-            chinhSuaPayee.Show();
+            //ChinhSuaPayee chinhSuaPayee = new ChinhSuaPayee();
+            //chinhSuaPayee.Show();
         }
     }
 }
