@@ -33,16 +33,15 @@
             panel3 = new Panel();
             label2 = new Label();
             panel4 = new Panel();
+            btnThem = new Button();
             btnSua = new Button();
             btnXoa = new Button();
             txtTimKiem = new TextBox();
             label1 = new Label();
-            btnThem = new Button();
             panel5 = new Panel();
-            kryptonDataGridView1 = new Krypton.Toolkit.KryptonDataGridView();
-            cot1 = new DataGridViewTextBoxColumn();
             panel6 = new Panel();
             panel1 = new Panel();
+            kryptonDataGridView1 = new DataGridView();
             panel3.SuspendLayout();
             panel4.SuspendLayout();
             panel5.SuspendLayout();
@@ -93,62 +92,6 @@
             panel4.Size = new Size(922, 69);
             panel4.TabIndex = 3;
             // 
-            // btnSua
-            // 
-            btnSua.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnSua.FlatAppearance.BorderSize = 0;
-            btnSua.FlatStyle = FlatStyle.Flat;
-            btnSua.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnSua.ForeColor = Color.White;
-            btnSua.Image = (Image)resources.GetObject("btnSua.Image");
-            btnSua.ImageAlign = ContentAlignment.MiddleLeft;
-            btnSua.Location = new Point(837, 22);
-            btnSua.Name = "btnSua";
-            btnSua.Size = new Size(69, 29);
-            btnSua.TabIndex = 2;
-            btnSua.Text = "Sửa";
-            btnSua.TextAlign = ContentAlignment.MiddleRight;
-            btnSua.UseVisualStyleBackColor = true;
-            // 
-            // btnXoa
-            // 
-            btnXoa.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnXoa.FlatAppearance.BorderSize = 0;
-            btnXoa.FlatStyle = FlatStyle.Flat;
-            btnXoa.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnXoa.ForeColor = Color.White;
-            btnXoa.Image = (Image)resources.GetObject("btnXoa.Image");
-            btnXoa.ImageAlign = ContentAlignment.MiddleLeft;
-            btnXoa.Location = new Point(752, 21);
-            btnXoa.Name = "btnXoa";
-            btnXoa.Size = new Size(68, 29);
-            btnXoa.TabIndex = 3;
-            btnXoa.Text = "Xoá";
-            btnXoa.TextAlign = ContentAlignment.MiddleRight;
-            btnXoa.UseVisualStyleBackColor = true;
-            // 
-            // txtTimKiem
-            // 
-            txtTimKiem.ForeColor = SystemColors.InactiveCaption;
-            txtTimKiem.Location = new Point(317, 23);
-            txtTimKiem.Name = "txtTimKiem";
-            txtTimKiem.Size = new Size(212, 27);
-            txtTimKiem.TabIndex = 1;
-            txtTimKiem.Text = "  Tìm kiếm...";
-            txtTimKiem.Enter += txtTimKiem_Enter;
-            txtTimKiem.Leave += txtTimKiem_Leave;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
-            label1.ForeColor = Color.Cyan;
-            label1.Location = new Point(30, 19);
-            label1.Name = "label1";
-            label1.Size = new Size(281, 37);
-            label1.TabIndex = 0;
-            label1.Text = "QUẢN LÝ GIAO DỊCH";
-            // 
             // btnThem
             // 
             btnThem.Anchor = AnchorStyles.Top | AnchorStyles.Right;
@@ -167,6 +110,65 @@
             btnThem.UseVisualStyleBackColor = true;
             btnThem.Click += btnThem_Click;
             // 
+            // btnSua
+            // 
+            btnSua.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnSua.FlatAppearance.BorderSize = 0;
+            btnSua.FlatStyle = FlatStyle.Flat;
+            btnSua.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnSua.ForeColor = Color.White;
+            btnSua.Image = (Image)resources.GetObject("btnSua.Image");
+            btnSua.ImageAlign = ContentAlignment.MiddleLeft;
+            btnSua.Location = new Point(837, 22);
+            btnSua.Name = "btnSua";
+            btnSua.Size = new Size(69, 29);
+            btnSua.TabIndex = 2;
+            btnSua.Text = "Sửa";
+            btnSua.TextAlign = ContentAlignment.MiddleRight;
+            btnSua.UseVisualStyleBackColor = true;
+            btnSua.Click += btnSua_Click;
+            // 
+            // btnXoa
+            // 
+            btnXoa.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnXoa.FlatAppearance.BorderSize = 0;
+            btnXoa.FlatStyle = FlatStyle.Flat;
+            btnXoa.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnXoa.ForeColor = Color.White;
+            btnXoa.Image = (Image)resources.GetObject("btnXoa.Image");
+            btnXoa.ImageAlign = ContentAlignment.MiddleLeft;
+            btnXoa.Location = new Point(752, 21);
+            btnXoa.Name = "btnXoa";
+            btnXoa.Size = new Size(68, 29);
+            btnXoa.TabIndex = 3;
+            btnXoa.Text = "Xoá";
+            btnXoa.TextAlign = ContentAlignment.MiddleRight;
+            btnXoa.UseVisualStyleBackColor = true;
+            btnXoa.Click += btnXoa_Click;
+            // 
+            // txtTimKiem
+            // 
+            txtTimKiem.ForeColor = SystemColors.InactiveCaption;
+            txtTimKiem.Location = new Point(317, 23);
+            txtTimKiem.Name = "txtTimKiem";
+            txtTimKiem.Size = new Size(212, 27);
+            txtTimKiem.TabIndex = 1;
+            txtTimKiem.Text = "  Tìm kiếm...";
+            txtTimKiem.TextChanged += txtTimKiem_TextChanged;
+            txtTimKiem.Enter += txtTimKiem_Enter;
+            txtTimKiem.Leave += txtTimKiem_Leave;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+            label1.ForeColor = Color.Cyan;
+            label1.Location = new Point(30, 19);
+            label1.Name = "label1";
+            label1.Size = new Size(281, 37);
+            label1.TabIndex = 0;
+            label1.Text = "QUẢN LÝ GIAO DỊCH";
+            // 
             // panel5
             // 
             panel5.Controls.Add(kryptonDataGridView1);
@@ -176,25 +178,6 @@
             panel5.Name = "panel5";
             panel5.Size = new Size(722, 492);
             panel5.TabIndex = 4;
-            // 
-            // kryptonDataGridView1
-            // 
-            kryptonDataGridView1.BorderStyle = BorderStyle.None;
-            kryptonDataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            kryptonDataGridView1.Columns.AddRange(new DataGridViewColumn[] { cot1 });
-            kryptonDataGridView1.Dock = DockStyle.Fill;
-            kryptonDataGridView1.Location = new Point(0, 50);
-            kryptonDataGridView1.Name = "kryptonDataGridView1";
-            kryptonDataGridView1.RowHeadersWidth = 51;
-            kryptonDataGridView1.Size = new Size(722, 442);
-            kryptonDataGridView1.TabIndex = 2;
-            // 
-            // cot1
-            // 
-            cot1.HeaderText = "Column1";
-            cot1.MinimumWidth = 6;
-            cot1.Name = "cot1";
-            cot1.Width = 125;
             // 
             // panel6
             // 
@@ -214,6 +197,16 @@
             panel1.Size = new Size(100, 542);
             panel1.TabIndex = 0;
             // 
+            // kryptonDataGridView1
+            // 
+            kryptonDataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            kryptonDataGridView1.Dock = DockStyle.Fill;
+            kryptonDataGridView1.Location = new Point(0, 50);
+            kryptonDataGridView1.Name = "kryptonDataGridView1";
+            kryptonDataGridView1.RowHeadersWidth = 51;
+            kryptonDataGridView1.Size = new Size(722, 442);
+            kryptonDataGridView1.TabIndex = 2;
+            // 
             // UserControlQuanLyGiaoDich
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -225,6 +218,7 @@
             Controls.Add(panel4);
             Name = "UserControlQuanLyGiaoDich";
             Size = new Size(922, 611);
+            Load += UserControlQuanLyGiaoDich_Load;
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
             panel4.ResumeLayout(false);
@@ -244,11 +238,10 @@
         private Panel panel1;
         private TextBox txtTimKiem;
         private Panel panel6;
-        private Krypton.Toolkit.KryptonDataGridView kryptonDataGridView1;
         private Label label2;
         private Button btnSua;
         private Button btnXoa;
         private Button btnThem;
-        private DataGridViewTextBoxColumn cot1;
+        private DataGridView kryptonDataGridView1;
     }
 }
