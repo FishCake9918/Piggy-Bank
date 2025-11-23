@@ -3,10 +3,14 @@ using LiveCharts;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
+using System.Drawing;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
-using Data; // Namespace chứa QLTCCNContext và Entity
+using Data;
 
 namespace Demo_Layout
 {
@@ -23,27 +27,15 @@ namespace Demo_Layout
             ConfigCharts(); // Cấu hình giao diện biểu đồ
         }
 
-        // --- HÀM HỖ TRỢ KHỞI TẠO CONTEXT ---
-        private QLTCCNContext GetContext()
-        {
-            var optionsBuilder = new DbContextOptionsBuilder<QLTCCNContext>();
-            optionsBuilder.UseSqlServer(ConnectionString);
-            return new QLTCCNContext(optionsBuilder.Options);
-        }
-
         private void ConfigCharts()
         {
+            // Cấu hình màu nền và legend chung
             pieChartChiTieu.LegendLocation = LegendLocation.Right;
-
-            // Cấu hình zoom/pan cho biểu đồ đường nếu cần
-            cartesianChartXuHuong.Zoom = ZoomingOptions.X;
-            cartesianChartXuHuong.Pan = PanningOptions.X;
         }
 
         private void UserControlBaoCao_Load(object sender, EventArgs e)
         {
             DateTime now = DateTime.Now;
-            // Mặc định từ đầu tháng đến hiện tại
             dtpTuNgay.Value = new DateTime(now.Year, now.Month, 1);
             dtpDenNgay.Value = now;
 
@@ -58,10 +50,10 @@ namespace Demo_Layout
                 // 3. DÙNG NHÀ MÁY TẠO KẾT NỐI (Thay vì new trực tiếp)
                 using (var db = _dbFactory.CreateDbContext())
                 {
-                    var listTK = context.TaiKhoanThanhToans
-                                        .Where(t => t.MaNguoiDung == CURRENT_USER_ID)
-                                        .Select(t => new { t.MaTaiKhoanThanhToan, t.TenTaiKhoan })
-                                        .ToList();
+                    var listTK = db.TaiKhoanThanhToans
+                                   .Where(t => t.MaNguoiDung == CURRENT_USER_ID)
+                                   .Select(t => new { t.MaTaiKhoanThanhToan, t.TenTaiKhoan })
+                                   .ToList();
 
                     // Thêm mục "Tất cả"
                     listTK.Insert(0, new { MaTaiKhoanThanhToan = 0, TenTaiKhoan = "(Tất cả tài khoản)" });
@@ -95,12 +87,6 @@ namespace Demo_Layout
             toDate = toDate.AddDays(1).AddTicks(-1);
 
             int maTaiKhoan = (int)cboTaiKhoan.SelectedValue;
-
-            int maTaiKhoan = 0;
-            if (cboTaiKhoan.SelectedValue != null && int.TryParse(cboTaiKhoan.SelectedValue.ToString(), out int val))
-            {
-                maTaiKhoan = val;
-            }
 
             try
             {
@@ -151,7 +137,7 @@ namespace Demo_Layout
         // ==================================================================================
         private void UpdatePieChart_CoCauChiTieu(List<DashboardDto> data)
         {
-            // Lọc Chi (MaLoai = 2)
+            // Lọc Chi (MaLoai = 2) và Group theo Danh Mục
             var chiTieuData = data
                 .Where(x => x.MaLoaiGiaoDich == 2)
                 .GroupBy(x => x.TenDanhMuc)
@@ -161,7 +147,7 @@ namespace Demo_Layout
 
             var pieSeries = new SeriesCollection();
 
-            // Top 5 danh mục
+            // Lấy Top 5 danh mục lớn nhất (như yêu cầu)
             foreach (var item in chiTieuData.Take(5))
             {
                 pieSeries.Add(new PieSeries
@@ -169,11 +155,11 @@ namespace Demo_Layout
                     Title = item.Name,
                     Values = new ChartValues<double> { item.Total },
                     DataLabels = true,
-                    LabelPoint = p => string.Format("{0} ({1:P})", p.Y.ToString("N0"), p.Participation)
+                    LabelPoint = p => string.Format("({1:P})", p.Y.ToString("N0"), p.Participation)
                 });
             }
 
-            // Mục "Khác"
+            // Gom nhóm phần còn lại vào mục "Khác"
             var otherTotal = chiTieuData.Skip(5).Sum(x => x.Total);
             if (otherTotal > 0)
             {
@@ -195,6 +181,7 @@ namespace Demo_Layout
         // ==================================================================================
         private void UpdateLabel_TongThuNhap(List<DashboardDto> data)
         {
+            // Tính tổng các giao dịch Thu (MaLoai = 1)
             var tongThu = data.Where(x => x.MaLoaiGiaoDich == 1).Sum(x => x.SoTien);
             lblTongThuNhap.Text = $"{tongThu:N0} đ";
         }
@@ -204,8 +191,9 @@ namespace Demo_Layout
         // ==================================================================================
         private void UpdateLineChart_XuHuong(List<DashboardDto> data)
         {
+            // Group Chi tiêu theo Ngày
             var xuHuongData = data
-                .Where(x => x.MaLoaiGiaoDich == 2) // Chỉ lấy Chi
+                .Where(x => x.MaLoaiGiaoDich == 2)
                 .GroupBy(x => x.NgayGiaoDich.Date)
                 .Select(g => new { Date = g.Key, Total = g.Sum(x => x.SoTien) })
                 .OrderBy(x => x.Date)
@@ -230,8 +218,8 @@ namespace Demo_Layout
                 cartesianChartXuHuong.AxisX.Add(new Axis
                 {
                     Title = "Thời gian",
-                    Labels = xuHuongData.Select(x => x.Date.ToString("dd/MM")).ToList(),
-                    Separator = new Separator { Step = 1 } // Tùy chỉnh step nếu dữ liệu quá dày
+                    Labels = xuHuongData.Select(x => x.Date.ToString("dd/mm")).ToList(),
+                    Separator = new Separator { Step = 3 }
                 });
 
                 cartesianChartXuHuong.AxisY.Add(new Axis
@@ -256,7 +244,8 @@ namespace Demo_Layout
                 int.TryParse(cboTaiKhoan.SelectedValue.ToString(), out maTaiKhoan);
             }
 
-            if (isAllAccounts)
+            // TRƯỜNG HỢP 1: CHỌN "TẤT CẢ TÀI KHOẢN" -> HIỂN THỊ CẶP CỘT THU/CHI CHO TỪNG TÀI KHOẢN
+            if (maTaiKhoan == 0)
             {
                 List<string> accountNames = new List<string>();
                 ChartValues<double> incomeValues = new ChartValues<double>(); // Danh sách giá trị Thu
@@ -286,14 +275,15 @@ namespace Demo_Layout
                                      && g.NgayGiaoDich <= toDate)
                             .Sum(g => (double?)g.SoTien) ?? 0;
 
-                        labels.Add("Tổng quan");
-                        incomeValues.Add(totalThu);
-                        expenseValues.Add(totalChi);
+                        accountNames.Add(tk.TenTaiKhoan);
+                        incomeValues.Add((double)thu);
+                        expenseValues.Add((double)chi);
                     }
+                }
 
-                    // Tạo 2 Series: Một cho Thu (Xanh), Một cho Chi (Đỏ)
-                    // LiveCharts sẽ tự động nhóm chúng lại theo từng mục trên trục X
-                    cartesianChartThuChi.Series = new SeriesCollection
+                // Tạo 2 Series: Một cho Thu (Xanh), Một cho Chi (Đỏ)
+                // LiveCharts sẽ tự động nhóm chúng lại theo từng mục trên trục X
+                cartesianChartThuChi.Series = new SeriesCollection
                 {
                     new ColumnSeries
                     {
@@ -315,33 +305,33 @@ namespace Demo_Layout
                     }
                 };
 
-                    cartesianChartThuChi.AxisX.Add(new Axis
-                    {
-                        //Title = "Tài khoản",
-                        Labels = accountNames, // Tên các tài khoản nằm dưới trục X
-                        Separator = new Separator { Step = 1 }
-                    });
-                }
+                cartesianChartThuChi.AxisX.Add(new Axis
+                {
+                    //Title = "Tài khoản",
+                    Labels = accountNames, // Tên các tài khoản nằm dưới trục X
+                    Separator = new Separator { Step = 1 }
+                });
+            }
             // TRƯỜNG HỢP 2: CHỌN 1 TÀI KHOẢN CỤ THỂ (Giữ nguyên logic so sánh tổng quát)
             else
+            {
+                double totalThu = 0;
+                double totalChi = 0;
+
+                using (var db = _dbFactory.CreateDbContext())
                 {
-                    double totalThu = 0;
-                    double totalChi = 0;
+                    totalThu = (double)(db.GiaoDichs
+                       .Where(g => g.MaTaiKhoanThanhToan == maTaiKhoan && g.MaLoaiGiaoDich == 1
+                               && g.NgayGiaoDich >= fromDate && g.NgayGiaoDich <= toDate)
+                       .Sum(g => (double?)g.SoTien) ?? 0);
 
-                    using (var db = _dbFactory.CreateDbContext())
-                    {
-                        totalThu = (double)(db.GiaoDichs
-                           .Where(g => g.MaTaiKhoanThanhToan == maTaiKhoan && g.MaLoaiGiaoDich == 1
-                                   && g.NgayGiaoDich >= fromDate && g.NgayGiaoDich <= toDate)
-                           .Sum(g => (double?)g.SoTien) ?? 0);
+                    totalChi = (double)(db.GiaoDichs
+                       .Where(g => g.MaTaiKhoanThanhToan == maTaiKhoan && g.MaLoaiGiaoDich == 2
+                               && g.NgayGiaoDich >= fromDate && g.NgayGiaoDich <= toDate)
+                       .Sum(g => (double?)g.SoTien) ?? 0);
+                }
 
-                        totalChi = (double)(db.GiaoDichs
-                           .Where(g => g.MaTaiKhoanThanhToan == maTaiKhoan && g.MaLoaiGiaoDich == 2
-                                   && g.NgayGiaoDich >= fromDate && g.NgayGiaoDich <= toDate)
-                           .Sum(g => (double?)g.SoTien) ?? 0);
-                    }
-
-                    cartesianChartThuChi.Series = new SeriesCollection
+                cartesianChartThuChi.Series = new SeriesCollection
                 {
                     new ColumnSeries
                     {
@@ -363,24 +353,26 @@ namespace Demo_Layout
                     }
                 };
 
-                    cartesianChartThuChi.AxisX.Add(new Axis { Labels = new[] { "Tổng quan" }, ShowLabels = false });
-                }
-
-                cartesianChartThuChi.AxisY.Add(new Axis
-                {
-                    LabelFormatter = value => value.ToString("N0")
-                });
+                cartesianChartThuChi.AxisX.Add(new Axis { Labels = new[] { "Tổng quan" }, ShowLabels = false });
             }
 
-        // DTO đã cập nhật thêm TenTaiKhoan
+            // Trục Y chung
+            cartesianChartThuChi.AxisY.Add(new Axis
+            {
+                LabelFormatter = value => value.ToString("N0")
+            });
+        }
+
+        // Class hỗ trợ truyền dữ liệu (DTO)
         public class DashboardDto
         {
             public double SoTien { get; set; }
             public DateTime NgayGiaoDich { get; set; }
             public int MaLoaiGiaoDich { get; set; }
             public string TenDanhMuc { get; set; }
-            public string TenTaiKhoan { get; set; } // Thêm trường này để tối ưu biểu đồ cột
         }
     }
 }
+
+
 
