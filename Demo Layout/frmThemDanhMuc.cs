@@ -1,191 +1,119 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿//using DanhMucChiTieu.Data; // Using DbContext
+//using QLTCCN.Models; // Using Model
+using System;
 using System.Linq;
 using System.Windows.Forms;
-using Microsoft.EntityFrameworkCore;
-using Data; // Namespace chứa QLTCCNContext và Entity
+using System.Collections.Generic; // Cần cho List
 
 namespace Demo_Layout
 {
     public partial class frmThemDanhMuc : Form
     {
-        private const int CURRENT_USER_ID = 1;
+        //// Giả định ID người dùng hiện tại là 1 (Nguyễn Văn An)
+        //// Trong ứng dụng thật, bạn sẽ lấy ID này từ Form Đăng nhập
+        //private const int CURRENT_USER_ID = 1;
 
-        // Chuỗi kết nối
-        private const string ConnectionString = "Data Source=DESKTOP-6QOFBT9\\SQLEXPRESS;Initial Catalog=QLTCCN;Integrated Security=True;TrustServerCertificate=True";
-
-        // Biến lưu ID danh mục đang sửa (nếu có). Null nghĩa là đang Thêm mới.
-        private int? _maDanhMucEdited = null;
-
-        // --- CONSTRUCTOR 1: Dùng cho Thêm Mới ---
         public frmThemDanhMuc()
         {
             InitializeComponent();
-            _maDanhMucEdited = null;
-            this.Text = "Thêm Danh Mục Mới";
-        }
-
-        // --- CONSTRUCTOR 2: Dùng cho Sửa ---
-        public frmThemDanhMuc(int maDanhMuc)
-        {
-            InitializeComponent();
-            _maDanhMucEdited = maDanhMuc;
-            this.Text = "Cập Nhật Danh Mục";
-        }
-
-        // Helper tạo Context
-        private QLTCCNContext GetContext()
-        {
-            var optionsBuilder = new DbContextOptionsBuilder<QLTCCNContext>();
-            optionsBuilder.UseSqlServer(ConnectionString);
-            return new QLTCCNContext(optionsBuilder.Options);
         }
 
         private void frmThemDanhMuc_Load(object sender, EventArgs e)
         {
-            LoadComboBoxDanhMucCha();
-
-            // Nếu đang ở chế độ Sửa, load dữ liệu cũ lên form
-            if (_maDanhMucEdited.HasValue)
-            {
-                LoadDataForEdit();
-            }
+            //    LoadComboBoxDanhMucCha();
         }
 
-        private void LoadDataForEdit()
-        {
-            try
-            {
-                using (var context = GetContext())
-                {
-                    var entity = context.DanhMucChiTieus.Find(_maDanhMucEdited.Value);
-                    if (entity != null)
-                    {
-                        txtTenDanhMuc.Text = entity.TenDanhMuc;
+        ///// <summary>
+        ///// Tải danh sách các danh mục hiện có vào ComboBox
+        ///// </summary>
+        //private void LoadComboBoxDanhMucCha()
+        //{
+        //    try
+        //    {
+        //        using (var db = new QLTCCN_DbContext())
+        //        {
+        //            // Lấy tất cả danh mục của người dùng hiện tại
+        //            var danhSachCha = db.DANH_MUC_CHI_TIEU
+        //                                .Where(dm => dm.MaNguoiDung == CURRENT_USER_ID && dm.DanhMucCha == null)
+        //                                .Select(dm => new { dm.MaDanhMuc, dm.TenDanhMuc })
+        //                                .ToList();
 
-                        // Set giá trị cho ComboBox (Nếu null thì về 0 - Gốc)
-                        cboDanhMucCha.SelectedValue = entity.DanhMucCha ?? 0;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi tải dữ liệu cũ: " + ex.Message);
-            }
-        }
+        //            // Tạo một danh sách mới để thêm mục "Gốc"
+        //            var dataSource = new List<object>
+        //            {
+        //                // Mục này đại diện cho giá trị NULL
+        //                new { MaDanhMuc = 0, TenDanhMuc = "(Là danh mục gốc)" }
+        //            };
 
-        private void LoadComboBoxDanhMucCha()
-        {
-            try
-            {
-                using (var context = GetContext())
-                {
-                    // Lấy danh sách danh mục cha (Chỉ lấy các mục Gốc để làm cha)
-                    var query = context.DanhMucChiTieus
-                                       .Where(dm => dm.MaNguoiDung == CURRENT_USER_ID && dm.DanhMucCha == null);
+        //            dataSource.AddRange(danhSachCha);
 
-                    // LOGIC QUAN TRỌNG: Nếu đang Sửa, loại bỏ chính nó khỏi danh sách cha
-                    // (Không thể chọn chính mình làm cha của mình)
-                    if (_maDanhMucEdited.HasValue)
-                    {
-                        int idToExclude = _maDanhMucEdited.Value;
-                        query = query.Where(dm => dm.MaDanhMuc != idToExclude);
-                    }
+        //            // Gán vào ComboBox
+        //            cboDanhMucCha.DataSource = dataSource;
+        //            cboDanhMucCha.DisplayMember = "TenDanhMuc"; // Hiển thị Tên
+        //            cboDanhMucCha.ValueMember = "MaDanhMuc";   // Lấy giá trị Mã
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show("Lỗi khi tải danh mục cha: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //    }
+        //}
 
-                    var danhSachCha = query.Select(dm => new { dm.MaDanhMuc, dm.TenDanhMuc })
-                                           .ToList();
-
-                    // Tạo mục "Gốc"
-                    var dataSource = new List<object>
-                    {
-                        new { MaDanhMuc = 0, TenDanhMuc = "(Là danh mục gốc)" }
-                    };
-
-                    dataSource.AddRange(danhSachCha);
-
-                    cboDanhMucCha.DataSource = dataSource;
-                    cboDanhMucCha.DisplayMember = "TenDanhMuc";
-                    cboDanhMucCha.ValueMember = "MaDanhMuc";
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi khi tải danh mục cha: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
+        ///// <summary>
+        ///// Xử lý khi nhấn nút Lưu
+        ///// </summary>
         private void btnLuu_Click(object sender, EventArgs e)
         {
-            // 1. Validation
-            if (string.IsNullOrWhiteSpace(txtTenDanhMuc.Text))
-            {
-                MessageBox.Show("Tên danh mục không được để trống.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtTenDanhMuc.Focus();
-                return;
-            }
+            //    // 1. Kiểm tra dữ liệu (Validation)
+            //    if (string.IsNullOrWhiteSpace(txtTenDanhMuc.Text))
+            //    {
+            //        MessageBox.Show("Tên danh mục không được để trống.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //        txtTenDanhMuc.Focus();
+            //        return;
+            //    }
 
-            try
-            {
-                using (var context = GetContext())
-                {
-                    // Lấy ID cha từ ComboBox
-                    int maChaDaChon = (int)cboDanhMucCha.SelectedValue;
-                    int? idChaLuuDb = (maChaDaChon == 0) ? (int?)null : maChaDaChon;
+            //    try
+            //    {
+            //        // 2. Tạo đối tượng DanhMuc mới
+            //        var danhMucMoi = new DANH_MUC_CHI_TIEU();
+            //        danhMucMoi.TenDanhMuc = txtTenDanhMuc.Text.Trim();
+            //        danhMucMoi.MaNguoiDung = CURRENT_USER_ID; // Gán người dùng hiện tại
 
-                    if (_maDanhMucEdited == null)
-                    {
-                        // --- TRƯỜNG HỢP THÊM MỚI ---
-                        var danhMucMoi = new DanhMucChiTieu
-                        {
-                            TenDanhMuc = txtTenDanhMuc.Text.Trim(),
-                            MaNguoiDung = CURRENT_USER_ID,
-                            DanhMucCha = idChaLuuDb
-                        };
+            //        // 3. Xử lý DanhMucCha (Nullable int)
+            //        int maChaDaChon = (int)cboDanhMucCha.SelectedValue;
 
-                        context.DanhMucChiTieus.Add(danhMucMoi);
-                        context.SaveChanges();
-                        MessageBox.Show("Thêm danh mục mới thành công!", "Thành công");
-                    }
-                    else
-                    {
-                        // --- TRƯỜNG HỢP SỬA (UPDATE) ---
-                        var danhMucCanSua = context.DanhMucChiTieus.Find(_maDanhMucEdited.Value);
-                        if (danhMucCanSua != null)
-                        {
-                            danhMucCanSua.TenDanhMuc = txtTenDanhMuc.Text.Trim();
-                            danhMucCanSua.DanhMucCha = idChaLuuDb;
+            //        if (maChaDaChon == 0) // Nếu chọn "(Là danh mục gốc)"
+            //        {
+            //            danhMucMoi.DanhMucCha = null;
+            //        }
+            //        else
+            //        {
+            //            danhMucMoi.DanhMucCha = maChaDaChon;
+            //        }
 
-                            // (Không cần sửa MaNguoiDung)
+            //        // 4. Lưu vào CSDL bằng EF Core
+            //        using (var db = new QLTCCN_DbContext())
+            //        {
+            //            db.DANH_MUC_CHI_TIEU.Add(danhMucMoi);
+            //            db.SaveChanges(); // Lưu thay đổi
+            //        }
 
-                            context.SaveChanges();
-                            MessageBox.Show("Cập nhật danh mục thành công!", "Thành công");
-                        }
-                        else
-                        {
-                            MessageBox.Show("Danh mục này không còn tồn tại.", "Lỗi");
-                        }
-                    }
-                }
-
-                this.DialogResult = DialogResult.OK; // Báo cho form cha biết để reload cây
-                this.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi khi lưu vào CSDL: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            //        MessageBox.Show("Thêm danh mục mới thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //        this.DialogResult = DialogResult.OK; // Đặt kết quả để Form cha biết
+            //        this.Close();
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        MessageBox.Show("Lỗi khi lưu vào CSDL: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    }
         }
 
         private void btnHuy_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.Cancel;
-            this.Close();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            this.Close();
+            //    this.DialogResult = DialogResult.Cancel;
+            //    this.Close();
         }
     }
 }
+
+
