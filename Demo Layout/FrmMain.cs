@@ -85,6 +85,10 @@ namespace Demo_Layout
             }
             catch { _lastCheckTime = DateTime.Now.AddDays(-7); }
 
+                LogHelper.GhiLog(_dbFactory, "Đăng nhập", _userContext.MaNguoiDung); // ghi log
+
+                // Logic đổi hình đại diện nếu có (ví dụ)
+                // if (_userContext.IsAdmin) picUserProfile.Image = ...
             try
             {
                 using (var db = _dbFactory.CreateDbContext())
