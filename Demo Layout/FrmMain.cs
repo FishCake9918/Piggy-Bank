@@ -5,8 +5,9 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Media;
 using System.IO;
-using Data; // QUAN TRỌNG
+using Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -37,9 +38,15 @@ namespace Demo_Layout
         [DllImport("user32.dll")]
         public static extern bool ReleaseCapture();
 
+        private SoundPlayer player;
+        private string soundFilePath = Path.Combine(Application.StartupPath, "Click.wav");
+
         public FrmMain(IDbContextFactory<QLTCCNContext> dbFactory, IServiceProvider serviceProvider, CurrentUserContext userContext)
         {
             InitializeComponent();
+            player = new SoundPlayer("Click.wav");
+            this.KeyPreview = true;
+
             _dbFactory = dbFactory;
             _serviceProvider = serviceProvider;
             _userContext = userContext;
@@ -47,9 +54,12 @@ namespace Demo_Layout
 
             icoBell.Click += IcoBell_Click;
             icoBell.Paint += IcoBell_Paint;
+            this.FrmMain_Load(this, EventArgs.Empty); // Gọi hàm Load
 
             CheckNewNotifications();
         }
+
+        // --------------------------------------------------------
 
         private void FrmMain_Load(object sender, EventArgs e)
         {
@@ -85,15 +95,12 @@ namespace Demo_Layout
             }
             catch { _lastCheckTime = DateTime.Now.AddDays(-7); }
 
-                LogHelper.GhiLog(_dbFactory, "Đăng nhập", _userContext.MaNguoiDung); // ghi log
+            // LogHelper.GhiLog(_dbFactory, "Đăng nhập", _userContext.MaNguoiDung); // Giả định LogHelper tồn tại
 
-                // Logic đổi hình đại diện nếu có (ví dụ)
-                // if (_userContext.IsAdmin) picUserProfile.Image = ...
             try
             {
                 using (var db = _dbFactory.CreateDbContext())
                 {
-                    // FIX LỖI: So sánh trực tiếp, không cần HasValue
                     int countNew = db.ThongBaos.Count(t => t.NgayTao > _lastCheckTime);
                     _coThongBaoMoi = countNew > 0;
                     icoBell.Invalidate();
@@ -172,6 +179,7 @@ namespace Demo_Layout
 
         private void button1_Click(object sender, EventArgs e)
         {
+            player.Play(); // ⭐ PHÁT ÂM THANH ⭐
             HieuUngRungLac();
             pnlHienThi.Controls.Clear();
             UserControlBaoCao userControlMoi = _serviceProvider.GetRequiredService<UserControlBaoCao>();
@@ -181,6 +189,7 @@ namespace Demo_Layout
 
         private void button2_Click(object sender, EventArgs e)
         {
+            player.Play(); // ⭐ PHÁT ÂM THANH ⭐
             HieuUngRungLac();
             pnlHienThi.Controls.Clear();
             UserControlQuanLyGiaoDich userControlMoi = _serviceProvider.GetRequiredService<UserControlQuanLyGiaoDich>();
@@ -190,6 +199,7 @@ namespace Demo_Layout
 
         private void button3_Click(object sender, EventArgs e)
         {
+            player.Play(); // ⭐ PHÁT ÂM THANH ⭐
             HieuUngRungLac();
             pnlHienThi.Controls.Clear();
 
@@ -224,6 +234,7 @@ namespace Demo_Layout
 
         private void button4_Click(object sender, EventArgs e)
         {
+            player.Play(); // ⭐ PHÁT ÂM THANH ⭐                                         
             HieuUngRungLac();
             pnlHienThi.Controls.Clear();
             UserControlDanhMucChiTieu userControlMoi = _serviceProvider.GetRequiredService<UserControlDanhMucChiTieu>();
@@ -233,6 +244,7 @@ namespace Demo_Layout
 
         private void button5_Click(object sender, EventArgs e)
         {
+            player.Play(); // ⭐ PHÁT ÂM THANH ⭐
             HieuUngRungLac();
             pnlHienThi.Controls.Clear();
 
@@ -240,7 +252,6 @@ namespace Demo_Layout
             UserControlDoiTuongGiaoDich userControlMoi = _serviceProvider.GetRequiredService<UserControlDoiTuongGiaoDich>();
 
             // 2. PHẢI THÊM: LẮNG NGHE SỰ KIỆN TỪ USER CONTROL
-            // Gán Event của User Control vào phương thức xử lý của Form Main
             userControlMoi.OnOpenEditForm += DoiTuongControl_OnOpenEditForm;
 
             // 3. Nhúng vào Panel
@@ -248,10 +259,10 @@ namespace Demo_Layout
             pnlHienThi.Controls.Add(userControlMoi);
         }
 
-        // KHÔNG ĐƯỢC THIẾU PHƯƠNG THỨC XỬ LÝ SỰ KIỆN NÀY (Đã đúng)
+        // KHÔNG ĐƯỢC THIẾU PHƯƠNG THỨC XỬ LÝ SỰ KIỆN NÀY
         private void DoiTuongControl_OnOpenEditForm(object sender, int doiTuongId)
         {
-            // Tạo form chỉnh sửa thông qua DI (khắc phục lỗi 'No service for type...')
+            // Tạo form chỉnh sửa thông qua DI
             using (var frmEdit = _serviceProvider.GetRequiredService<FrmChinhSuaDoiTuongGiaoDich>())
             {
                 frmEdit.SetId(doiTuongId);
@@ -270,6 +281,7 @@ namespace Demo_Layout
 
         private void button6_Click(object sender, EventArgs e)
         {
+            player.Play(); // ⭐ PHÁT ÂM THANH ⭐
             HieuUngRungLac();
             pnlHienThi.Controls.Clear();
 
@@ -277,16 +289,13 @@ namespace Demo_Layout
             UserControlTaiKhoanThanhToan userControlMoi = _serviceProvider.GetRequiredService<UserControlTaiKhoanThanhToan>();
 
             // 2. PHẢI THÊM: LẮNG NGHE SỰ KIỆN TỪ USER CONTROL
-            // Gán Event Thêm tài khoản
             userControlMoi.OnOpenThemTaiKhoan += TaiKhoan_OnOpenThemTaiKhoan;
-            // Gán Event Đóng tài khoản
             userControlMoi.OnOpenDongTaiKhoan += TaiKhoan_OnOpenDongTaiKhoan;
 
             // 3. Nhúng vào Panel
             userControlMoi.Dock = DockStyle.Fill;
             pnlHienThi.Controls.Add(userControlMoi);
         }
-        // Thêm 2 phương thức này vào FrmMain.cs
 
         private void TaiKhoan_OnOpenThemTaiKhoan(object sender, int taiKhoanId)
         {
@@ -352,8 +361,9 @@ namespace Demo_Layout
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
+            player.Play(); // ⭐ PHÁT ÂM THANH ⭐
             Piggy_Admin.FormTaiKhoan f = _serviceProvider.GetRequiredService<Piggy_Admin.FormTaiKhoan>();
-            Point pos = picUserProfile.PointToScreen(new Point(50, picUserProfile.Height - 500));
+            Point pos = picUserProfile.PointToScreen(new Point(50, picUserProfile.Height - 350));
             f.StartPosition = FormStartPosition.Manual;
             f.Location = pos;
             f.LogoutRequested += () => { this.Close(); };

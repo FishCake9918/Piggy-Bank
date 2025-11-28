@@ -28,46 +28,52 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lblHeader = new System.Windows.Forms.Label();
-            this.flowPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.SuspendLayout();
+            components = new System.ComponentModel.Container();
+            lblHeader = new Label();
+            flowPanel = new FlowLayoutPanel();
+            timer1 = new System.Windows.Forms.Timer(components);
+            SuspendLayout();
             // 
             // lblHeader
             // 
-            this.lblHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(76)))), ((int)(((byte)(60)))));
-            this.lblHeader.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblHeader.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.lblHeader.ForeColor = System.Drawing.Color.White;
-            this.lblHeader.Location = new System.Drawing.Point(0, 0);
-            this.lblHeader.Name = "lblHeader";
-            this.lblHeader.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
-            this.lblHeader.Size = new System.Drawing.Size(360, 45);
-            this.lblHeader.TabIndex = 0;
-            this.lblHeader.Text = "Thông báo";
-            this.lblHeader.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            lblHeader.BackColor = Color.FromArgb(36, 76, 60);
+            lblHeader.Dock = DockStyle.Top;
+            lblHeader.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            lblHeader.ForeColor = Color.White;
+            lblHeader.Location = new Point(0, 0);
+            lblHeader.Name = "lblHeader";
+            lblHeader.Padding = new Padding(15, 0, 0, 0);
+            lblHeader.Size = new Size(360, 45);
+            lblHeader.TabIndex = 0;
+            lblHeader.Text = "Thông báo";
+            lblHeader.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // flowPanel
             // 
-            this.flowPanel.AutoScroll = true;
-            this.flowPanel.BackColor = System.Drawing.Color.White;
-            this.flowPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowPanel.Location = new System.Drawing.Point(0, 45);
-            this.flowPanel.Name = "flowPanel";
-            this.flowPanel.Size = new System.Drawing.Size(360, 405);
-            this.flowPanel.TabIndex = 1;
-            this.flowPanel.WrapContents = false;
+            flowPanel.AutoScroll = true;
+            flowPanel.BackColor = Color.White;
+            flowPanel.Dock = DockStyle.Fill;
+            flowPanel.FlowDirection = FlowDirection.TopDown;
+            flowPanel.Location = new Point(0, 45);
+            flowPanel.Name = "flowPanel";
+            flowPanel.Size = new Size(360, 405);
+            flowPanel.TabIndex = 1;
+            flowPanel.WrapContents = false;
             // 
-            // UC_ListThongBao
+            // timer1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
-            this.Controls.Add(this.flowPanel);
-            this.Controls.Add(this.lblHeader);
-            this.Name = "UC_ListThongBao";
-            this.Size = new System.Drawing.Size(360, 450);
-            this.ResumeLayout(false);
+            timer1.Interval = 10;
+            // 
+            // ListThongBao
+            // 
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
+            Controls.Add(flowPanel);
+            Controls.Add(lblHeader);
+            Name = "ListThongBao";
+            Size = new Size(360, 450);
+            ResumeLayout(false);
 
         }
 
@@ -75,5 +81,6 @@
 
         private System.Windows.Forms.Label lblHeader;
         private System.Windows.Forms.FlowLayoutPanel flowPanel;
+        private System.Windows.Forms.Timer timer1;
     }
 }
