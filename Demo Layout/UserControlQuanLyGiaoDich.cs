@@ -15,20 +15,24 @@ namespace Demo_Layout
         // --- DI SERVICES ---
         private readonly IDbContextFactory<QLTCCNContext> _dbFactory;
         private readonly IServiceProvider _serviceProvider;
-
-        private const int CURRENT_USER_ID = 1;
+        private readonly CurrentUserContext _userContext; // <-- 1. Thêm biến Context
 
         // Biến toàn cục
         private DataTable dtGiaoDich;
         private bool isPlaceholderActive = true;
 
         // --- CONSTRUCTOR NHẬN DI ---
-        public UserControlQuanLyGiaoDich(IDbContextFactory<QLTCCNContext> dbFactory, IServiceProvider serviceProvider)
+        // 2. Inject CurrentUserContext vào đây
+        public UserControlQuanLyGiaoDich(
+            IDbContextFactory<QLTCCNContext> dbFactory, 
+            IServiceProvider serviceProvider,
+            CurrentUserContext userContext) 
         {
             InitializeComponent();
 
             _dbFactory = dbFactory;
             _serviceProvider = serviceProvider;
+            _userContext = userContext; // Gán giá trị
 
             // Đăng ký các sự kiện
             this.Load += UserControlQuanLyGiaoDich_Load;
@@ -72,11 +76,11 @@ namespace Demo_Layout
         {
             try
             {
-                // Sử dụng Factory để tạo Context
                 using (var context = _dbFactory.CreateDbContext())
                 {
+                    // 3. Thay CURRENT_USER_ID bằng _userContext.MaNguoiDung
                     var listTK = context.TaiKhoanThanhToans
-                                         .Where(t => t.MaNguoiDung == CURRENT_USER_ID && t.TrangThai == "Đang hoạt động")
+                                         .Where(t => t.MaNguoiDung == _userContext.MaNguoiDung && t.TrangThai == "Đang hoạt động")
                                          .Select(t => new { t.MaTaiKhoanThanhToan, t.TenTaiKhoan })
                                          .ToList();
 
@@ -114,15 +118,15 @@ namespace Demo_Layout
                     maTaiKhoanLoc = val;
                 }
 
-                // Sử dụng Factory để tạo Context
                 using (var context = _dbFactory.CreateDbContext())
                 {
+                    // 4. Lọc theo User đang đăng nhập
                     var query = context.GiaoDichs
                         .Include(g => g.LoaiGiaoDich)
                         .Include(g => g.DoiTuongGiaoDich)
                         .Include(g => g.TaiKhoanThanhToan)
                         .Include(g => g.DanhMucChiTieu)
-                        .Where(g => g.MaNguoiDung == CURRENT_USER_ID);
+                        .Where(g => g.MaNguoiDung == _userContext.MaNguoiDung); 
 
                     if (maTaiKhoanLoc > 0)
                     {
@@ -153,7 +157,6 @@ namespace Demo_Layout
                     poisonDataGridView1.DataSource = dtGiaoDich;
 
                     FormatGrid();
-                    // Gọi hàm tính Tổng Thu/Chi mới
                     CalculateTotal(query);
                 }
             }
@@ -166,11 +169,9 @@ namespace Demo_Layout
         // --- 3. LOGIC TÍNH TỔNG THU & TỔNG CHI MỚI ---
         private void CalculateTotal(IQueryable<GiaoDich> filteredTransactions)
         {
-            // Mã loại giao dịch: 1 (Thu), 2 (Chi)
             decimal tongThu = filteredTransactions.Where(g => g.MaLoaiGiaoDich == 1).Sum(g => g.SoTien);
             decimal tongChi = filteredTransactions.Where(g => g.MaLoaiGiaoDich == 2).Sum(g => g.SoTien);
 
-            // Gán kết quả vào lblTongThuChi
             lblTongThuChi.Text = string.Format("💰 Tổng thu: {0:N0} đ | 💸 Tổng chi: {1:N0} đ", tongThu, tongChi);
             lblTongThuChi.ForeColor = Color.DarkSlateGray;
         }
@@ -241,13 +242,12 @@ namespace Demo_Layout
             int maDoiTuong = row.Cells["MaDoiTuongGiaoDich"].Value != DBNull.Value ? Convert.ToInt32(row.Cells["MaDoiTuongGiaoDich"].Value) : 0;
             int maTaiKhoan = row.Cells["MaTaiKhoanThanhToan"].Value != DBNull.Value ? Convert.ToInt32(row.Cells["MaTaiKhoanThanhToan"].Value) : 0;
 
-            // Sử dụng ActivatorUtilities.CreateInstance để gọi constructor đầy đủ
+            // 6. Truyền các tham số KHÔNG phải là Service (Dữ liệu cần sửa)
+            // ActivatorUtilities sẽ tự lấy DbContext, ServiceProvider và CurrentUserContext từ DI
             FrmThemGiaoDich frm = ActivatorUtilities.CreateInstance<FrmThemGiaoDich>(
                 _serviceProvider,
-                _dbFactory,           // Dependency 1
-                _serviceProvider,     // Dependency 2
-                maGiaoDich,           // Tham số 1 (Dữ liệu)
-                tenGiaoDich,          // ...
+                maGiaoDich,           
+                tenGiaoDich,          
                 ghiChu,
                 soTien,
                 ngayGiaoDich,
@@ -274,12 +274,18 @@ namespace Demo_Layout
 
             try
             {
-                // Sử dụng Factory để tạo Context
                 using (var context = _dbFactory.CreateDbContext())
                 {
                     var gd = context.GiaoDichs.Find(maGiaoDich);
                     if (gd != null)
                     {
+                        // Kiểm tra quyền (optional): Chỉ xóa của chính mình
+                        if (gd.MaNguoiDung != _userContext.MaNguoiDung)
+                        {
+                             MessageBox.Show("Bạn không có quyền xóa giao dịch này.");
+                             return;
+                        }
+
                         context.GiaoDichs.Remove(gd);
                         context.SaveChanges();
                         MessageBox.Show("Xóa thành công!");
@@ -298,7 +304,7 @@ namespace Demo_Layout
             }
         }
 
-        // --- CÁC HÀM TÌM KIẾM (Giữ nguyên logic) ---
+        // ... (Các hàm tìm kiếm và helper giữ nguyên) ...
         private void txtTimKiem_Leave(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtTimKiem.Text))

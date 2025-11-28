@@ -41,9 +41,10 @@
             lblHeader.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             lblHeader.ForeColor = Color.White;
             lblHeader.Location = new Point(0, 0);
+            lblHeader.Margin = new Padding(4, 0, 4, 0);
             lblHeader.Name = "lblHeader";
-            lblHeader.Padding = new Padding(15, 0, 0, 0);
-            lblHeader.Size = new Size(360, 45);
+            lblHeader.Padding = new Padding(19, 0, 0, 0);
+            lblHeader.Size = new Size(450, 56);
             lblHeader.TabIndex = 0;
             lblHeader.Text = "Thông báo";
             lblHeader.TextAlign = ContentAlignment.MiddleLeft;
@@ -54,25 +55,24 @@
             flowPanel.BackColor = Color.White;
             flowPanel.Dock = DockStyle.Fill;
             flowPanel.FlowDirection = FlowDirection.TopDown;
-            flowPanel.Location = new Point(0, 45);
+            flowPanel.Location = new Point(0, 56);
+            flowPanel.Margin = new Padding(4, 4, 4, 4);
             flowPanel.Name = "flowPanel";
-            flowPanel.Size = new Size(360, 405);
+            flowPanel.Size = new Size(450, 506);
             flowPanel.TabIndex = 1;
             flowPanel.WrapContents = false;
             // 
-            // timer1
-            // 
-            timer1.Interval = 10;
-            // 
             // ListThongBao
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             Controls.Add(flowPanel);
             Controls.Add(lblHeader);
+            Margin = new Padding(4, 4, 4, 4);
+            MaximumSize = new Size(450, 562);
             Name = "ListThongBao";
-            Size = new Size(360, 450);
+            Size = new Size(450, 562);
             ResumeLayout(false);
 
         }
