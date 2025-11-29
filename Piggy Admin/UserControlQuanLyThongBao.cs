@@ -25,7 +25,7 @@ namespace Piggy_Admin
             _dbFactory = dbFactory;
             _serviceProvider = serviceProvider;
             _userContext = userContext;
-
+            Dinhdangluoi.DinhDangLuoiAdmin(kryptonDataGridView1);
             // Hookup events
             kryptonDataGridView1.CellDoubleClick += KryptonDataGridView1_CellDoubleClick;
             txtTimKiem.TextChanged += txtTimKiem_TextChanged;

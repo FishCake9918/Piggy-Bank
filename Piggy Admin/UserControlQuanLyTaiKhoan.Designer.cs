@@ -35,20 +35,18 @@
             btnThem = new Button();
             txtTimKiem = new TextBox();
             label1 = new Label();
-            panel1 = new Panel();
-            panel2 = new Panel();
             panel3 = new Panel();
             panel5 = new Panel();
             panel6 = new Panel();
             kryptonDataGridView1 = new Krypton.Toolkit.KryptonDataGridView();
+            panel1 = new Panel();
             panel4.SuspendLayout();
-            panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)kryptonDataGridView1).BeginInit();
             SuspendLayout();
             // 
             // panel4
             // 
-            panel4.BackColor = Color.FromArgb(89, 105, 223);
+            panel4.BackColor = Color.FromArgb(11, 60, 93);
             panel4.Controls.Add(btnSua);
             panel4.Controls.Add(btnXoa);
             panel4.Controls.Add(btnThem);
@@ -129,7 +127,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
-            label1.ForeColor = Color.Cyan;
+            label1.ForeColor = Color.FromArgb(247, 245, 242);
             label1.Location = new Point(38, 24);
             label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
@@ -137,54 +135,34 @@
             label1.TabIndex = 0;
             label1.Text = "QUẢN LÝ TÀI KHOẢN";
             // 
-            // panel1
-            // 
-            panel1.Controls.Add(panel2);
-            panel1.Dock = DockStyle.Left;
-            panel1.Location = new Point(0, 86);
-            panel1.Margin = new Padding(4);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(125, 678);
-            panel1.TabIndex = 10;
-            // 
-            // panel2
-            // 
-            panel2.BackColor = Color.FromArgb(172, 180, 239);
-            panel2.Dock = DockStyle.Left;
-            panel2.Location = new Point(0, 0);
-            panel2.Margin = new Padding(4);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(125, 678);
-            panel2.TabIndex = 11;
-            // 
             // panel3
             // 
-            panel3.BackColor = Color.FromArgb(172, 180, 239);
+            panel3.BackColor = Color.FromArgb(247, 245, 242);
             panel3.Dock = DockStyle.Right;
-            panel3.Location = new Point(1027, 86);
+            panel3.Location = new Point(1122, 86);
             panel3.Margin = new Padding(4);
             panel3.Name = "panel3";
-            panel3.Size = new Size(125, 678);
+            panel3.Size = new Size(30, 678);
             panel3.TabIndex = 11;
             // 
             // panel5
             // 
-            panel5.BackColor = Color.FromArgb(172, 180, 239);
+            panel5.BackColor = Color.FromArgb(247, 245, 242);
             panel5.Dock = DockStyle.Top;
-            panel5.Location = new Point(125, 86);
+            panel5.Location = new Point(30, 86);
             panel5.Margin = new Padding(4);
             panel5.Name = "panel5";
-            panel5.Size = new Size(902, 86);
+            panel5.Size = new Size(1092, 30);
             panel5.TabIndex = 12;
             // 
             // panel6
             // 
-            panel6.BackColor = Color.FromArgb(172, 180, 239);
+            panel6.BackColor = Color.FromArgb(247, 245, 242);
             panel6.Dock = DockStyle.Bottom;
-            panel6.Location = new Point(125, 678);
+            panel6.Location = new Point(30, 734);
             panel6.Margin = new Padding(4);
             panel6.Name = "panel6";
-            panel6.Size = new Size(902, 86);
+            panel6.Size = new Size(1092, 30);
             panel6.TabIndex = 13;
             // 
             // kryptonDataGridView1
@@ -193,7 +171,7 @@
             kryptonDataGridView1.BorderStyle = BorderStyle.None;
             kryptonDataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             kryptonDataGridView1.Dock = DockStyle.Fill;
-            kryptonDataGridView1.Location = new Point(125, 172);
+            kryptonDataGridView1.Location = new Point(30, 116);
             kryptonDataGridView1.Margin = new Padding(4);
             kryptonDataGridView1.MultiSelect = false;
             kryptonDataGridView1.Name = "kryptonDataGridView1";
@@ -201,8 +179,17 @@
             kryptonDataGridView1.RowHeadersVisible = false;
             kryptonDataGridView1.RowHeadersWidth = 51;
             kryptonDataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            kryptonDataGridView1.Size = new Size(902, 506);
+            kryptonDataGridView1.Size = new Size(1092, 618);
             kryptonDataGridView1.TabIndex = 14;
+            // 
+            // panel1
+            // 
+            panel1.Dock = DockStyle.Left;
+            panel1.Location = new Point(0, 86);
+            panel1.Margin = new Padding(4);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(30, 678);
+            panel1.TabIndex = 10;
             // 
             // UserControlQuanLyTaiKhoan
             // 
@@ -219,7 +206,6 @@
             Size = new Size(1152, 764);
             panel4.ResumeLayout(false);
             panel4.PerformLayout();
-            panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)kryptonDataGridView1).EndInit();
             ResumeLayout(false);
         }
@@ -229,8 +215,6 @@
         private Panel panel4;
         private TextBox txtTimKiem;
         private Label label1;
-        private Panel panel1;
-        private Panel panel2;
         private Panel panel3;
         private Panel panel5;
         private Panel panel6;
@@ -238,5 +222,6 @@
         private Button btnSua;
         private Button btnXoa;
         private Button btnThem;
+        private Panel panel1;
     }
 }

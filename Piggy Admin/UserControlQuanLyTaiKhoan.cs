@@ -23,7 +23,8 @@ namespace Piggy_Admin
             _userContext = userContext;
 
             this.Load += UserControlQuanLyTaiKhoan_Load;
-    
+            Dinhdangluoi.DinhDangLuoiAdmin(kryptonDataGridView1);
+
             kryptonDataGridView1.CellDoubleClick += KryptonDataGridView1_CellDoubleClick;
             txtTimKiem.TextChanged += TxtTimKiem_TextChanged;
             txtTimKiem.GotFocus += TxtTimKiem_GotFocus;

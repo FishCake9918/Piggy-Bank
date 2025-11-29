@@ -212,7 +212,7 @@ namespace Demo_Layout
             label3.Name = "label3";
             label3.Size = new Size(830, 76);
             label3.TabIndex = 3;
-            label3.Text = "SLOGAN OF PIGGY BANK";
+            label3.Text = "PIGGY BANK";
             label3.TextAlign = ContentAlignment.BottomCenter;
             // 
             // label2
