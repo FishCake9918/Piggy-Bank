@@ -9,18 +9,18 @@ namespace Demo_Layout
 {
     public partial class FrmThemSuaDoiTuongGiaoDich : Form
     {
-        public Action OnDataSaved;
+        public Action OnDataSaved; // Callback để refresh dữ liệu ở form cha
         private readonly IDbContextFactory<QLTCCNContext> _dbFactory;
-        private readonly CurrentUserContext _userContext; // <-- Inject
+        private readonly CurrentUserContext _userContext;
         private int _idDoiTuong = 0;
         public FrmThemSuaDoiTuongGiaoDich(
             IDbContextFactory<QLTCCNContext> dbFactory,
-            CurrentUserContext userContext) // <-- Inject
+            CurrentUserContext userContext)
         {
             InitializeComponent();
             _dbFactory = dbFactory;
             _userContext = userContext;
-
+            // Gắn sự kiện bấm nút Lưu và Hủy
             this.btnLuu.Click += btnLuu_Click;
             this.btnHuy.Click += btnHuy_Click;
         }
@@ -28,7 +28,7 @@ namespace Demo_Layout
         public void SetId(int id)
         {
             _idDoiTuong = id;
-            this.Text = (id == 0) ? "Thêm Đối Tượng" : "Sửa Đối Tượng";
+            this.Text = (id == 0) ? "Thêm Đối Tượng" : "Sửa Đối Tượng"; // Tự động đổi form thành Thêm hoặc Sửa
 
             // CẬP NHẬT: Đặt tiêu đề cho lblForm
             if (lblForm != null)
@@ -75,11 +75,9 @@ namespace Demo_Layout
             string ghiChu = txtGhiChu.Text.Trim();
 
             if (string.IsNullOrEmpty(tenDoiTuong)) { MessageBox.Show("Tên đối tượng không được để trống."); return; }
-
+            // KIỂM TRA TRÙNG TÊN — chỉ trong phạm vi người dùng hiện tại
             using (var db = _dbFactory.CreateDbContext())
-            {
-                // SỬA: Check trùng tên (case-sensitive mặc định của EF Core trên SQL Server, nên cần cẩn thận nếu muốn case-insensitive)
-                // Tuy nhiên, ta giữ nguyên cách kiểm tra trong LINQ
+            {       
                 bool isDuplicate = db.DoiTuongGiaoDichs
                     .Any(p => p.TenDoiTuong.Equals(tenDoiTuong) &&
                               p.MaNguoiDung == _userContext.MaNguoiDung &&
@@ -89,9 +87,8 @@ namespace Demo_Layout
 
                 try
                 {
-                    if (_idDoiTuong == 0)
+                    if (_idDoiTuong == 0) //THÊM MỚI — tự động gán MaNguoiDung
                     {
-                        // Thêm mới
                         var newObj = new DoiTuongGiaoDich
                         {
                             TenDoiTuong = tenDoiTuong,
@@ -100,11 +97,9 @@ namespace Demo_Layout
                         };
                         db.DoiTuongGiaoDichs.Add(newObj);
                     }
-                    else
+                    else // LOGIC CHỈNH SỬA
                     {
-                        // Sửa
                         var objToUpdate = db.DoiTuongGiaoDichs.FirstOrDefault(d => d.MaDoiTuongGiaoDich == _idDoiTuong);
-                        // Kiểm tra quyền sở hữu trước khi sửa
                         if (objToUpdate != null && objToUpdate.MaNguoiDung == _userContext.MaNguoiDung)
                         {
                             objToUpdate.TenDoiTuong = tenDoiTuong;
@@ -118,7 +113,6 @@ namespace Demo_Layout
                     }
                     db.SaveChanges();
 
-                    // Gọi delegate sau khi lưu thành công
                     OnDataSaved?.Invoke();
 
                     this.DialogResult = DialogResult.OK;
