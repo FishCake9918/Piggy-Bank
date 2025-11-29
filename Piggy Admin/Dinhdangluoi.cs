@@ -10,46 +10,71 @@ namespace Piggy_Admin
 {
         public static class Dinhdangluoi
         {
-            public static void DinhDangLuoiDep(KryptonDataGridView grid)
-            {
-            // 1. TẮT KHUNG VIỀN BAO QUANH
+        public static void DinhDangLuoiAdmin(KryptonDataGridView grid)
+        {
+            // 1. BẢNG MÀU ADMIN (Dựa trên RGB bạn gửi)
+            Color colorHeaderAdmin = Color.FromArgb(124, 144, 160);     // Xanh Dương Đậm (Header)
+            Color colorTextAdmin = Color.FromArgb(11, 60, 93);       // Chữ nội dung (Xanh Đậm)
+
+            // Nền chính: Màu Trắng Kem (Sáng sủa)
+            Color colorBackgroundGrid = Color.FromArgb(247, 245, 242);
+
+            // Nền dòng chẵn: Màu Kem Xám nhẹ (Zebra)
+            Color colorAltRow = Color.FromArgb(206, 219, 221);
+
+            // Màu chọn dòng: Xanh Dương Nhạt (Tạo điểm nhấn)
+            Color colorSelection = Color.FromArgb(163, 199, 227);
+
+            // Đường kẻ: Xanh xám nhạt
+            Color colorGridLine = Color.FromArgb(124, 144, 160);
+
+            // --- 2. CẤU HÌNH KHUNG VIỀN ---
             grid.BorderStyle = BorderStyle.FixedSingle;
             grid.HideOuterBorders = false;
 
-            // 2. Cấu hình màu nền
-                grid.StateCommon.Background.Color1 = Color.White;
-                grid.StateCommon.BackStyle = PaletteBackStyle.GridBackgroundSheet;
+            // --- 3. MÀU NỀN TỔNG THỂ ---
+            grid.StateCommon.Background.Color1 = colorBackgroundGrid;
+            grid.StateCommon.BackStyle = PaletteBackStyle.GridBackgroundSheet;
 
-                // 3. Cấu hình Header 
-                grid.PaletteMode = PaletteMode.ProfessionalSystem;
-                grid.StateCommon.HeaderColumn.Back.Color1 = Color.FromArgb(89, 105, 223);
-                grid.StateCommon.HeaderColumn.Back.Color2 = Color.FromArgb(89, 105, 223);
-                grid.StateCommon.HeaderColumn.Content.Color1 = Color.White;
-                grid.StateCommon.HeaderColumn.Content.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-                grid.StateCommon.HeaderColumn.Content.TextH = PaletteRelativeAlign.Center;
-                grid.ColumnHeadersHeight = 45;
-                grid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            // Thiết lập Zebra (Dòng lẻ/chẵn)
+            grid.RowsDefaultCellStyle.BackColor = colorBackgroundGrid;
+            grid.AlternatingRowsDefaultCellStyle.BackColor = colorAltRow;
 
-                // 4. Cấu hình Dòng dữ liệu
-                grid.RowTemplate.Height = 40;
-                grid.StateCommon.DataCell.Content.Font = new Font("Segoe UI", 10F);
-                grid.StateCommon.DataCell.Content.Color1 = Color.FromArgb(64, 64, 64);
+            // --- 4. HEADER (TIÊU ĐỀ CỘT) ---
+            grid.PaletteMode = PaletteMode.ProfessionalSystem;
+            grid.StateCommon.HeaderColumn.Back.Color1 = colorHeaderAdmin;
+            grid.StateCommon.HeaderColumn.Back.Color2 = colorHeaderAdmin;
+            grid.StateCommon.HeaderColumn.Content.Color1 = Color.White; // Chữ trắng nổi bật trên nền xanh đậm
+            grid.StateCommon.HeaderColumn.Content.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            grid.StateCommon.HeaderColumn.Content.TextH = PaletteRelativeAlign.Center;
+            grid.ColumnHeadersHeight = 45;
+            grid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
 
-                // --- ĐÃ SỬA LỖI Ở ĐÂY (Dùng DataGridViewStyle) ---
-                grid.GridStyles.StyleColumn = (GridStyle)DataGridViewStyle.Sheet;
-                grid.GridStyles.StyleRow = (GridStyle)DataGridViewStyle.List;
+            // --- 5. DÒNG DỮ LIỆU ---
+            grid.RowTemplate.Height = 40; // Cao thoáng giống bên User
+            grid.StateCommon.DataCell.Content.Font = new Font("Segoe UI", 10F);
+            grid.StateCommon.DataCell.Content.Color1 = colorTextAdmin; // Chữ xanh đậm sang trọng
 
-                // 5. Hiệu ứng chọn dòng 
-                grid.StateSelected.DataCell.Back.Color1 = Color.FromArgb(235, 240, 255);
-                grid.StateSelected.DataCell.Back.Color2 = Color.FromArgb(235, 240, 255);
-                grid.StateSelected.DataCell.Content.Color1 = Color.Black;
+            // --- KẺ LƯỚI DỌC VÀ NGANG ---
+            grid.GridStyles.StyleColumn = (GridStyle)DataGridViewStyle.Sheet;
+            grid.GridStyles.StyleRow = (GridStyle)DataGridViewStyle.List;
 
-                // 6. Tinh chỉnh phụ
-                grid.RowHeadersVisible = false;
-                grid.AllowUserToResizeRows = false;
-                grid.ShowCellToolTips = true;
-                grid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            }
+            // Màu đường kẻ
+            grid.StateCommon.DataCell.Border.Color1 = colorGridLine;
+            grid.StateCommon.DataCell.Border.DrawBorders = PaletteDrawBorders.All; // Kẻ đủ 4 cạnh (có kẻ dọc)
+
+            // --- 6. HIỆU ỨNG CHỌN DÒNG ---
+            grid.StateSelected.DataCell.Back.Color1 = colorSelection;
+            grid.StateSelected.DataCell.Back.Color2 = colorSelection;
+            // Khi chọn, chữ vẫn giữ màu xanh đậm (dễ đọc) hoặc đổi sang trắng nếu thích tương phản mạnh
+            grid.StateSelected.DataCell.Content.Color1 = colorTextAdmin;
+
+            // --- 7. TINH CHỈNH KHÁC ---
+            grid.RowHeadersVisible = false;
+            grid.AllowUserToResizeRows = false;
+            grid.ShowCellToolTips = true;
+            grid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+        }
         public static void DinhDangLuoiNguoiDung(KryptonDataGridView grid)
         {
             // --- 1. BẢNG MÀU DỊU MẮT (WARM TONE) ---

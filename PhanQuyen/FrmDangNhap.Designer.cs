@@ -134,7 +134,7 @@ namespace PhanQuyen
             txtPassword.Multiline = true;
             txtPassword.Name = "txtPassword";
             txtPassword.PasswordChar = '•';
-            txtPassword.Size = new Size(525, 52);
+            txtPassword.Size = new Size(525, 48);
             txtPassword.TabIndex = 2;
             // 
             // lblPassword
@@ -158,7 +158,7 @@ namespace PhanQuyen
             txtUsername.Margin = new Padding(4);
             txtUsername.Multiline = true;
             txtUsername.Name = "txtUsername";
-            txtUsername.Size = new Size(525, 52);
+            txtUsername.Size = new Size(525, 48);
             txtUsername.TabIndex = 1;
             // 
             // lblUsername
