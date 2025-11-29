@@ -279,46 +279,7 @@ namespace Demo_Layout
             this.Close(); // Đóng form
         }
 
-        private void radChi_CheckedChanged(object sender, EventArgs e) { } // Không có logic
-        private void radThu_CheckedChanged(object sender, EventArgs e) { } // Không có logic
-
-        // Mở form Thêm Đối Tượng Giao Dịch
-        private void btnThemDoiTuongGiaoDich_Click(object sender, EventArgs e)
-        {
-            if (_serviceProvider == null) return;
-            try
-            {
-                var frm = _serviceProvider.GetRequiredService<FrmThemSuaDoiTuongGiaoDich>(); // Lấy form con qua DI
-                frm.SetId(0);
-
-                // Gán sự kiện LoadComboBoxes vào OnDataSaved (dùng Reflection)
-                if (frm.GetType().GetProperty("OnDataSaved") != null)
-                {
-                    frm.GetType().GetProperty("OnDataSaved").SetValue(frm, (Action)LoadComboBoxes);
-                }
-
-                frm.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi: " + ex.Message);
-            }
-        }
-
-        // Mở form Thêm Danh Mục Chi Tiêu
-        private void btnThemDanhMucChiTieu_Click(object sender, EventArgs e)
-        {
-            if (_serviceProvider == null) return;
-            try
-            {
-                var frm = _serviceProvider.GetRequiredService<FrmThemSuaDanhMuc>(); // Lấy form con qua DI
-                frm.ShowDialog();
-                LoadComboBoxes();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi: " + ex.Message);
-            }
-        }
+        private void radChi_CheckedChanged(object sender, EventArgs e) { } 
+        private void radThu_CheckedChanged(object sender, EventArgs e) { }     
     }
 }
