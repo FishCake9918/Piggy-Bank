@@ -186,7 +186,7 @@ namespace Demo_Layout
         private void KryptonDataGridView1_DoubleClick(object sender, EventArgs e) => BtnSua_Click(sender, e);
 
         // --- XỬ LÝ MỞ FORM TRỰC TIẾP ---
-        private void BtnThem_Click(object sender, EventArgs e)
+        public void BtnThem_Click(object sender, EventArgs e)
         {
             var frm = ActivatorUtilities.CreateInstance<FrmThemSuaNganSach>(_serviceProvider);
             frm.SetId(0);

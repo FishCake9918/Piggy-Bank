@@ -212,7 +212,7 @@ namespace Demo_Layout
         }
 
         // --- 5. CHỨC NĂNG THÊM / SỬA / XÓA ---
-        private void btnThem_Click(object sender, EventArgs e)
+        public void btnThem_Click(object sender, EventArgs e)
         {
             FrmThemGiaoDich frm = ActivatorUtilities.CreateInstance<FrmThemGiaoDich>(
                 _serviceProvider,

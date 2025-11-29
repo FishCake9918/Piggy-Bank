@@ -524,6 +524,7 @@
             button13.Text = "Thêm ngân sách";
             button13.TextAlign = ContentAlignment.MiddleRight;
             button13.UseVisualStyleBackColor = true;
+            button13.Click += button13_Click;
             // 
             // button12
             // 
@@ -540,6 +541,7 @@
             button12.Text = "Thêm đối tượng";
             button12.TextAlign = ContentAlignment.MiddleRight;
             button12.UseVisualStyleBackColor = true;
+            button12.Click += button12_Click;
             // 
             // button11
             // 
@@ -556,6 +558,7 @@
             button11.Text = "Thêm giao dịch";
             button11.TextAlign = ContentAlignment.MiddleRight;
             button11.UseVisualStyleBackColor = true;
+            button11.Click += button11_Click;
             // 
             // scThemTaiKhoan
             // 
@@ -572,6 +575,7 @@
             scThemTaiKhoan.Text = "Thêm tài khoản thanh toán";
             scThemTaiKhoan.TextAlign = ContentAlignment.MiddleRight;
             scThemTaiKhoan.UseVisualStyleBackColor = true;
+            scThemTaiKhoan.Click += scThemTaiKhoan_Click;
             // 
             // notifyIcon
             // 

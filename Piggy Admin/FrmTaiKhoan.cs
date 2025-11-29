@@ -127,6 +127,7 @@ namespace Piggy_Admin
                 {
                     if (lblTitle != null) lblTitle.Text = "HỒ SƠ CÁ NHÂN";
                     this.Text = "Thông tin người dùng";
+                    panelMain.BackColor = Color.FromArgb(244, 244, 238);
                     if (lblTitle != null) lblTitle.ForeColor = Color.SeaGreen;
                     try { picAvatar.Image = Properties.Resources.user; } catch { }
                 }

@@ -301,7 +301,51 @@ namespace Demo_Layout
 
         private void FrmMain_FormClosed(object sender, FormClosedEventArgs e) // Nam mới thêm :))
         {
-            LogHelper.GhiLog(_dbFactory, "Đăng xuất", _userContext.MaNguoiDung); 
+            LogHelper.GhiLog(_dbFactory, "Đăng xuất", _userContext.MaNguoiDung);
+        }
+
+        private void scThemTaiKhoan_Click(object sender, EventArgs e)
+        {
+            player.Play(); // ⭐ PHÁT ÂM THANH ⭐                                         
+            HieuUngRungLac();
+            pnlHienThi.Controls.Clear();
+            UserControlTaiKhoanThanhToan uc = _serviceProvider.GetRequiredService<UserControlTaiKhoanThanhToan>();
+            uc.Dock = DockStyle.Fill;
+            pnlHienThi.Controls.Add(uc);
+            uc.BtnThem_Click(sender, e);
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            player.Play(); // ⭐ PHÁT ÂM THANH ⭐                                         
+            HieuUngRungLac();
+            pnlHienThi.Controls.Clear();
+            UserControlQuanLyGiaoDich uc = _serviceProvider.GetRequiredService<UserControlQuanLyGiaoDich>();
+            uc.Dock = DockStyle.Fill;
+            pnlHienThi.Controls.Add(uc);
+            uc.btnThem_Click(sender, e);
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            player.Play(); // ⭐ PHÁT ÂM THANH ⭐                                         
+            HieuUngRungLac();
+            pnlHienThi.Controls.Clear();
+            UserControlDoiTuongGiaoDich uc = _serviceProvider.GetRequiredService<UserControlDoiTuongGiaoDich>();
+            uc.Dock = DockStyle.Fill;
+            pnlHienThi.Controls.Add(uc);
+            uc.BtnThem_Click(sender, e);
+        }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            player.Play(); // ⭐ PHÁT ÂM THANH ⭐                                         
+            HieuUngRungLac();
+            pnlHienThi.Controls.Clear();
+            UserControlNganSach uc = _serviceProvider.GetRequiredService<UserControlNganSach>();
+            uc.Dock = DockStyle.Fill;
+            pnlHienThi.Controls.Add(uc);
+            uc.BtnThem_Click(sender, e);
         }
     }
 }

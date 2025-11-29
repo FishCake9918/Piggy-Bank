@@ -110,7 +110,7 @@ namespace Demo_Layout
         private void TxtTimKiem_TextChanged(object sender, EventArgs e) => TimKiemVaLoc();
 
         // --- XỬ LÝ MỞ FORM TRỰC TIẾP ---
-        private void BtnThem_Click(object sender, EventArgs e)
+        public void BtnThem_Click(object sender, EventArgs e)
         {
             var frm = ActivatorUtilities.CreateInstance<FrmThemSuaDoiTuongGiaoDich>(_serviceProvider);
             frm.SetId(0);

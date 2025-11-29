@@ -204,7 +204,7 @@ namespace Demo_Layout
         private void TxtTimKiem_TextChanged(object sender, EventArgs e) => TimKiemVaLoc();
 
         // --- XỬ LÝ MỞ FORM TRỰC TIẾP TẠI ĐÂY ---
-        private void BtnThem_Click(object sender, EventArgs e)
+        public void BtnThem_Click(object sender, EventArgs e)
         {
             // Tự mở form, không cần gọi Event ra Main
             var frm = ActivatorUtilities.CreateInstance<FrmThemTaiKhoanThanhToan>(_serviceProvider);
