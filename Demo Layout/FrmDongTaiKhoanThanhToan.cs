@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 using System.Windows.Forms;
-using System.Drawing; // Cần thiết cho các thuộc tính Font, Color
+using System.Drawing;
 using System.Globalization;
 
 namespace Demo_Layout
@@ -33,25 +33,26 @@ namespace Demo_Layout
             _maTaiKhoanDong = taiKhoanId;
             LoadTaiKhoanData();
         }
-
+        //Tính toán số dư hiện tại
         private decimal CalculateCurrentBalance(int maTaiKhoan)
         {
             using (var db = _dbFactory.CreateDbContext())
             {
-                // Sử dụng 'decimal?' cho Sum để xử lý trường hợp không có giao dịch
+                // Lấy Số Dư Ban Đầu
                 decimal soDuBanDau = db.TaiKhoanThanhToans
                     .Where(t => t.MaTaiKhoanThanhToan == maTaiKhoan)
                     .Select(t => t.SoDuBanDau)
                     .FirstOrDefault();
-
+                // Tính tổng tiền Thu (MaLoaiGiaoDich == 1)
+                // Sử dụng (decimal?)g.SoTien và ?? 0 để xử lý trường hợp không có giao dịch (Sum trả về null)
                 decimal totalThu = db.GiaoDichs
                     .Where(g => g.MaTaiKhoanThanhToan == maTaiKhoan && g.MaLoaiGiaoDich == 1)
                     .Sum(g => (decimal?)g.SoTien) ?? 0;
-
+                //Tính tổng tiền Chi (MaLoaiGiaoDich == 2)
                 decimal totalChi = db.GiaoDichs
                     .Where(g => g.MaTaiKhoanThanhToan == maTaiKhoan && g.MaLoaiGiaoDich == 2)
                     .Sum(g => (decimal?)g.SoTien) ?? 0;
-
+                // Công thức tính số dư: Số Dư Ban Đầu + Tổng Thu - Tổng Chi
                 return soDuBanDau + totalThu - totalChi;
             }
         }
@@ -61,6 +62,7 @@ namespace Demo_Layout
             if (_userContext.MaNguoiDung == null) return;
             try
             {
+                //Tính số dư trước khi hiển thị
                 _currentBalance = CalculateCurrentBalance(_maTaiKhoanDong);
                 using (var db = _dbFactory.CreateDbContext())
                 {
@@ -72,7 +74,7 @@ namespace Demo_Layout
                         lblSoDuHienTai.Text = _currentBalance.ToString("N0", CultureInfo.CurrentCulture) + " đ";
                     }
 
-                    // Lọc tài khoản chuyển tiền theo User hiện tại
+                    // Lọc danh sách tài khoản hợp lệ để nhận số dư chuyển đến
                     var taiKhoanChuyenList = db.TaiKhoanThanhToans
                         .Where(t => t.MaNguoiDung == _userContext.MaNguoiDung &&
                                     t.MaTaiKhoanThanhToan != _maTaiKhoanDong &&
@@ -84,6 +86,7 @@ namespace Demo_Layout
                     cmbTaiKhoanChuyen.ValueMember = "MaTaiKhoanThanhToan";
                     cmbTaiKhoanChuyen.SelectedIndex = -1;
 
+                    // Xử lý trường hợp không có tài khoản nào để chuyển tiền
                     if (!taiKhoanChuyenList.Any())
                     {
                         MessageBox.Show("Không tìm thấy tài khoản để chuyển số dư.");
@@ -101,6 +104,7 @@ namespace Demo_Layout
 
         private void BtnDong_Click(object sender, EventArgs e)
         {
+            // Kiểm tra nghiệp vụ trước khi đóng
             if (_currentBalance != 0 && cmbTaiKhoanChuyen.SelectedValue == null)
             {
                 MessageBox.Show("Vui lòng chọn tài khoản nhận số dư còn lại.");
@@ -108,6 +112,7 @@ namespace Demo_Layout
             }
             if (_currentBalance < 0)
             {
+                // Ràng buộc nghiệp vụ: Không cho phép đóng nếu số dư âm
                 MessageBox.Show("Tài khoản đang âm. Vui lòng nạp tiền để số dư bằng 0 hoặc dương trước khi đóng.");
                 return;
             }

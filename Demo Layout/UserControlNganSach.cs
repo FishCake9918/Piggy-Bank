@@ -16,10 +16,11 @@ namespace Demo_Layout
     public partial class UserControlNganSach : UserControl
     {
         private readonly IDbContextFactory<QLTCCNContext> _dbFactory;
-        private readonly IServiceProvider _serviceProvider; // <-- Thêm
-        private readonly CurrentUserContext _userContext;   // <-- Thêm
+        private readonly IServiceProvider _serviceProvider;
+        private readonly CurrentUserContext _userContext;
         private BindingSource bsNganSach = new BindingSource();
         private List<NganSachViewModel> _fullList = new List<NganSachViewModel>();
+        // Mã loại giao dịch Chi (dùng để tính toán số tiền đã chi)
         private const int MA_LOAI_GIAO_DICH_CHI = 2;
 
         public UserControlNganSach(
@@ -34,7 +35,7 @@ namespace Demo_Layout
             Dinhdangluoi.DinhDangLuoiNguoiDung(dataGridView1);
             ConfigCharts();
             if (dataGridView1 != null) { dataGridView1.DataSource = bsNganSach; dataGridView1.DoubleClick += KryptonDataGridView1_DoubleClick; }
-
+            //Kích hoạt tính năng Lọc và Tìm kiếm ngay khi người dùng nhập liệu/ chọn tháng
             this.Load += UserControlNganSach_Load;
             if (txtTimKiem != null) this.txtTimKiem.TextChanged += (s, e) => TimKiemVaLoc();
             if (cmbLocThang != null) this.cmbLocThang.SelectedIndexChanged += (s, e) => TimKiemVaLoc();
@@ -59,6 +60,7 @@ namespace Demo_Layout
         {
             LogHelper.GhiLog(_dbFactory, "Quản lý ngân sách", _userContext.MaNguoiDung); // ghi log
             if (_userContext.MaNguoiDung == null) return;
+            // Thiết lập giá trị mặc định cho bộ lọc là Tháng và Năm hiện tại
             if (txtTimKiem != null) this.txtTimKiem.Text = string.Empty;
             if (txtLocNam != null) this.txtLocNam.Text = DateTime.Today.Year.ToString();
             if (cmbLocThang != null && cmbLocThang.DataSource != null) cmbLocThang.SelectedValue = DateTime.Today.Month;
@@ -67,16 +69,19 @@ namespace Demo_Layout
 
         private void LoadLocThangComboBox()
         {
+            // Tạo danh sách 12 tháng và thêm tùy chọn "Tất cả Tháng" (giá trị 0)
             var months = Enumerable.Range(1, 12).Select(m => new { MonthValue = m, MonthName = $"Tháng {m}" }).ToList();
             months.Insert(0, new { MonthValue = 0, MonthName = "Tất cả Tháng" });
             cmbLocThang.DataSource = months;
             cmbLocThang.DisplayMember = "MonthName";
             cmbLocThang.ValueMember = "MonthValue";
         }
-
+        // Tính các danh mục con (Subcategories) của một danh mục cha**
+        // Dùng thuật toán duyệt đồ thị (BFS - Breadth-First Search) qua Queue để đệ quy tìm tất cả ID danh mục con.
         private List<int> GetDescendantCategoryIds(int parentId, List<DanhMucChiTieu> allCategories)
         {
             var resultIds = new List<int> { parentId };
+            // Lấy tất cả con trực tiếp của danh mục hiện tại
             var queue = new Queue<int>();
             queue.Enqueue(parentId);
             while (queue.Count > 0)
@@ -97,17 +102,19 @@ namespace Demo_Layout
                     int currentUserId = _userContext.MaNguoiDung.Value;
                     var allCategories = db.DanhMucChiTieus.ToList();
 
-                    // SỬA: Lọc theo User Context
                     var nganSachList = db.BangNganSachs.Include(n => n.DanhMucChiTieu).Where(n => n.MaNguoiDung == currentUserId).ToList();
                     var allGiaoDichChi = db.GiaoDichs.Where(gd => gd.MaNguoiDung == currentUserId && gd.MaLoaiGiaoDich == MA_LOAI_GIAO_DICH_CHI).ToList();
-
+                    // Tính toán số tiền đã chi dựa trên Ngân sách**
                     _fullList = nganSachList.Select(n =>
                     {
+                        // 1. Lấy tất cả ID danh mục con (bao gồm chính nó)
                         List<int> relevantCategoryIds = GetDescendantCategoryIds(n.MaDanhMuc.Value, allCategories);
+                        // 2. Tổng hợp tiền đã chi:
                         decimal daChi = allGiaoDichChi.Where(gd => gd.MaDanhMuc.HasValue && relevantCategoryIds.Contains(gd.MaDanhMuc.Value) && gd.NgayGiaoDich >= n.NgayBatDau && gd.NgayGiaoDich <= n.NgayKetThuc).Sum(gd => gd.SoTien);
+                        // 3. Tạo ViewModel hiển thị
                         return new NganSachViewModel { MaNganSach = n.MaNganSach, TenDanhMuc = n.DanhMucChiTieu.TenDanhMuc, SoTienNganSach = n.SoTien, NgayBatDau = n.NgayBatDau, NgayKetThuc = n.NgayKetThuc, SoTienDaChi = daChi, SoTienConLai = n.SoTien - daChi };
                     }).ToList();
-                    CapNhatPieChart(_fullList);
+                    CapNhatPieChart(_fullList); // Cập nhật biểu đồ tròn
                     TimKiemVaLoc();
                 }
             }
@@ -120,22 +127,25 @@ namespace Demo_Layout
             string tuKhoa = txtTimKiem.Text.Trim();
             int? thangLoc = cmbLocThang.SelectedValue as int?;
             int? namLoc = int.TryParse(txtLocNam.Text.Trim(), out int n) ? (int?)n : null;
-
+            //Logic lọc theo Thời gian: Lọc theo Năm trước, sau đó lọc theo Tháng (nếu Tháng không phải "Tất cả")
             if (namLoc.HasValue && namLoc.Value > 0) danhSachLoc = danhSachLoc.Where(n => n.NgayBatDau.HasValue && n.NgayBatDau.Value.Year == namLoc.Value);
             if (thangLoc.HasValue && thangLoc.Value > 0) danhSachLoc = danhSachLoc.Where(n => n.NgayBatDau.HasValue && n.NgayBatDau.Value.Month == thangLoc.Value);
+            // Logic lọc theo từ khóa Danh mục
             if (!string.IsNullOrEmpty(tuKhoa)) danhSachLoc = danhSachLoc.Where(p => (p.TenDanhMuc != null && p.TenDanhMuc.Contains(tuKhoa, StringComparison.OrdinalIgnoreCase)));
 
             List<NganSachViewModel> ketQuaLoc = danhSachLoc.ToList();
             bsNganSach.DataSource = ketQuaLoc;
             bsNganSach.ResetBindings(false);
-            CapNhatTongNganSach(ketQuaLoc);
+            CapNhatTongNganSach(ketQuaLoc); // Cập nhật các Label Tổng quan
         }
 
         private void CapNhatTongNganSach(List<NganSachViewModel> hienThiList)
         {
+            // Tính tổng Ngân sách, tổng Đã chi, tổng Còn lại
             decimal tongSoTien = hienThiList.Sum(n => n.SoTienNganSach);
             decimal tongDaChi = hienThiList.Sum(n => n.SoTienDaChi);
             decimal tongConLai = tongSoTien - tongDaChi;
+            // Định dạng hiển thị tiền tệ
             if (labelTongNS != null) labelTongNS.Text = $"TỔNG QUAN";
             if (lblValueTongNS != null) lblValueTongNS.Text = string.Format("Tổng Ngân sách: {0:N0} VNĐ", tongSoTien);
             if (lblValueTongDaChi != null) lblValueTongDaChi.Text = string.Format("Tổng Đã chi: {0:N0} VNĐ", tongDaChi);
@@ -153,14 +163,18 @@ namespace Demo_Layout
             decimal tongNganSach = hienThiList.Sum(n => n.SoTienNganSach);
             pieChartNganSach.Series.Clear();
             if (tongNganSach == 0) return;
+            // Nhóm dữ liệu theo Tên Danh mục và tính tổng Ngân sách cho mỗi nhóm
             var coCauNganSachData = hienThiList.Where(n => n.SoTienNganSach > 0).GroupBy(n => n.TenDanhMuc).Select(g => new { Name = g.Key, Total = g.Sum(x => x.SoTienNganSach) }).OrderByDescending(x => x.Total).ToList();
             var pieSeries = new SeriesCollection();
             int colorIndex = 0;
+            // Chỉ lấy 5 mục lớn nhất, gộp phần còn lại vào mục "Khác"
             var topItems = coCauNganSachData.Take(5).ToList();
             var otherTotal = coCauNganSachData.Skip(5).Sum(x => x.Total);
             foreach (var item in topItems)
             {
-                pieSeries.Add(new PieSeries { Title = item.Name, Values = new ChartValues<double> { (double)item.Total }, DataLabels = true, LabelPoint = point => string.Format("{0:N0} VNĐ ({1:P0})", (decimal)point.Y, point.Participation), Fill = new System.Windows.Media.SolidColorBrush(_chartColors[colorIndex % _chartColors.Length]), Stroke = System.Windows.Media.Brushes.Transparent, });
+                pieSeries.Add(new PieSeries { Title = item.Name, Values = new ChartValues<double> { (double)item.Total }, DataLabels = true,
+                    // Định dạng Label hiển thị cả tiền (N0) và tỷ lệ (%)
+                    LabelPoint = point => string.Format("{0:N0} VNĐ ({1:P0})", (decimal)point.Y, point.Participation), Fill = new System.Windows.Media.SolidColorBrush(_chartColors[colorIndex % _chartColors.Length]), Stroke = System.Windows.Media.Brushes.Transparent, });
                 colorIndex++;
             }
             if (otherTotal > 0)
@@ -192,7 +206,7 @@ namespace Demo_Layout
             frm.SetId(0);
             if (frm.ShowDialog() == DialogResult.OK) LoadDanhSach();
         }
-
+        //Sự kiện nút sửa
         private void BtnSua_Click(object sender, EventArgs e)
         {
             if (bsNganSach.Current == null) { MessageBox.Show("Vui lòng chọn ngân sách."); return; }
@@ -202,7 +216,7 @@ namespace Demo_Layout
             frm.SetId(selectedId);
             if (frm.ShowDialog() == DialogResult.OK) LoadDanhSach();
         }
-
+        // Sự kiện nút xóa
         private void BtnXoa_Click(object sender, EventArgs e)
         {
             if (bsNganSach.Current == null) { MessageBox.Show("Vui lòng chọn ngân sách."); return; }

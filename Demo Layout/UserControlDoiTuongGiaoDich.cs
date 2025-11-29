@@ -15,8 +15,8 @@ namespace Demo_Layout
     public partial class UserControlDoiTuongGiaoDich : UserControl
     {
         private readonly IDbContextFactory<QLTCCNContext> _dbFactory;
-        private readonly IServiceProvider _serviceProvider; // <-- Thêm
-        private readonly CurrentUserContext _userContext;   // <-- Thêm
+        private readonly IServiceProvider _serviceProvider;
+        private readonly CurrentUserContext _userContext;
         private BindingSource bsDoiTuong = new BindingSource();
         private List<DoiTuongGiaoDich> _fullList = new List<DoiTuongGiaoDich>();
 
@@ -44,8 +44,8 @@ namespace Demo_Layout
         private void UserControlDoiTuongGiaoDich_Load(object sender, EventArgs e)
         {
             if (_userContext.MaNguoiDung == null) return;
-
-            LogHelper.GhiLog(_dbFactory, "Quản lý đối tượng giao dịch", _userContext.MaNguoiDung); // ghi log
+            // Ghi log hoạt động của người dùng (Giả định LogHelper.GhiLog là một class/method có sẵn)
+            LogHelper.GhiLog(_dbFactory, "Quản lý đối tượng giao dịch", _userContext.MaNguoiDung);
 
             txtTimKiem.Text = string.Empty;
             txtTimKiem.ForeColor = Color.Black;
@@ -80,14 +80,14 @@ namespace Demo_Layout
             {
                 using (var db = _dbFactory.CreateDbContext())
                 {
-                    // SỬA: Lọc theo Context User
+                    //Logic tải dữ liệu ban đầu
                     _fullList = db.DoiTuongGiaoDichs
                                         .Where(d => d.MaNguoiDung == _userContext.MaNguoiDung)
                                         .OrderBy(d => d.TenDoiTuong)
                                         .AsNoTracking()
                                         .ToList();
                     TimKiemVaLoc();
-                    ApplyGridViewHeaders();
+                    ApplyGridViewHeaders(); // Áp dụng bộ lọc tìm kiếm sau khi tải toàn bộ danh sách
                 }
             }
             catch (Exception ex) { MessageBox.Show("Lỗi: " + ex.Message); }
@@ -99,7 +99,8 @@ namespace Demo_Layout
             if (string.IsNullOrEmpty(tuKhoa)) bsDoiTuong.DataSource = _fullList;
             else
             {
-                var ketQuaLoc = _fullList.Where(p =>
+                // Logic tìm kiếm trên danh sách đã tải (_fullList)
+                var ketQuaLoc = _fullList.Where(p => // Tìm kiếm không phân biệt hoa thường (StringComparison.OrdinalIgnoreCase)
                     (p.TenDoiTuong != null && p.TenDoiTuong.Contains(tuKhoa, StringComparison.OrdinalIgnoreCase)) ||
                     (p.GhiChu != null && p.GhiChu.Contains(tuKhoa, StringComparison.OrdinalIgnoreCase))
                 ).ToList();
@@ -138,16 +139,21 @@ namespace Demo_Layout
             {
                 try
                 {
-                    using (var db = _dbFactory.CreateDbContext())
+
+                    using (var db = _dbFactory.CreateDbContext()) 
                     {
+                        // Xóa Cascade (Xóa dữ liệu liên quan)
+                        // .Include() để tải các Entity liên quan (GiaoDichs và DoiTuongGiaoDichNganSachs)
                         var entityToDelete = db.DoiTuongGiaoDichs
                                                 .Include(d => d.GiaoDichs)
                                                 .Include(d => d.DoiTuongGiaoDichNganSachs)
                                                 .FirstOrDefault(d => d.MaDoiTuongGiaoDich == selectedObj.MaDoiTuongGiaoDich);
                         if (entityToDelete != null)
                         {
+                            // Xóa các giao dịch và ngân sách liên quan trước
                             if (entityToDelete.GiaoDichs != null) db.GiaoDichs.RemoveRange(entityToDelete.GiaoDichs);
                             if (entityToDelete.DoiTuongGiaoDichNganSachs != null) db.DoiTuongGiaoDichNganSachs.RemoveRange(entityToDelete.DoiTuongGiaoDichNganSachs);
+                            // Sau đó xóa chính đối tượng
                             db.DoiTuongGiaoDichs.Remove(entityToDelete);
                             db.SaveChanges();
                         }
