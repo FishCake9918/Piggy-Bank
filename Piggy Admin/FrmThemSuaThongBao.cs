@@ -21,11 +21,26 @@ namespace Piggy_Admin
             InitializeComponent();
             _userContext = userContext;
             _dbFactory = dbFactory;
-
+            this.Paint += Vien_Paint;
             // Mặc định là chế độ tạo mới
             KhoiTaoCheDoTaoMoi();
         }
 
+        // Hàm vẽ viền thủ công cho Form không viền
+        private void Vien_Paint(object sender, PaintEventArgs e)
+        {
+            // Màu viền lấy từ Palette của bạn (Xám xanh: 124, 144, 160)
+            Color borderColor = Color.Black;
+
+            // Vẽ hình chữ nhật bao quanh form
+            // Trừ đi 1px để viền nằm trọn bên trong
+            Rectangle rect = new Rectangle(0, 0, this.Width - 1, this.Height - 1);
+
+            using (Pen pen = new Pen(borderColor, 3)) // Độ dày 1px
+            {
+                e.Graphics.DrawRectangle(pen, rect);
+            }
+        }
         private void KhoiTaoCheDoTaoMoi()
         {
             this.Text = "Tạo Thông Báo Mới";
@@ -114,5 +129,6 @@ namespace Piggy_Admin
         {
             this.Close();
         }
+
     }
 }

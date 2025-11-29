@@ -61,8 +61,8 @@ namespace Piggy_Admin
         {
             if (_userContext.IsLoggedIn)
             {
-                lblTenHienThi.Text = _userContext.DisplayName; 
-                lblVaiTro.Text = _userContext.TenVaiTro;      
+                lblTenHienThi.Text = _userContext.DisplayName;
+                lblVaiTro.Text = _userContext.TenVaiTro;
 
             }
         }
@@ -83,7 +83,7 @@ namespace Piggy_Admin
         // --- NÚT BÁO CÁO HỆ THỐNG ---
         private void button1_Click(object sender, EventArgs e)
         {
-            PlayClickSound(); 
+            PlayClickSound();
             pnlHienThi.Controls.Clear();
             UserControlBaoCaoHeThong uc = _serviceProvider.GetRequiredService<UserControlBaoCaoHeThong>();
             uc.Dock = DockStyle.Fill;
@@ -93,7 +93,7 @@ namespace Piggy_Admin
         // --- NÚT QUẢN LÝ TÀI KHOẢN ---
         private void button2_Click(object sender, EventArgs e)
         {
-            PlayClickSound(); 
+            PlayClickSound();
             pnlHienThi.Controls.Clear();
             UserControlQuanLyTaiKhoan uc = _serviceProvider.GetRequiredService<UserControlQuanLyTaiKhoan>();
             uc.Dock = DockStyle.Fill;
@@ -103,7 +103,7 @@ namespace Piggy_Admin
         // --- NÚT QUẢN LÝ THÔNG BÁO ---
         private void button5_Click(object sender, EventArgs e)
         {
-            PlayClickSound(); 
+            PlayClickSound();
             pnlHienThi.Controls.Clear();
             UserControlQuanLyThongBao userControlMoi = _serviceProvider.GetRequiredService<UserControlQuanLyThongBao>();
             userControlMoi.Dock = DockStyle.Fill;
@@ -125,6 +125,24 @@ namespace Piggy_Admin
             f.Show();
         }
 
+        private void scThemTaiKhoan_Click(object sender, EventArgs e)
+        {
+            player.Play();
+            pnlHienThi.Controls.Clear();
+            UserControlQuanLyTaiKhoan uc = _serviceProvider.GetRequiredService<UserControlQuanLyTaiKhoan>();
+            uc.Dock = DockStyle.Fill;
+            pnlHienThi.Controls.Add(uc);
+            uc.btnThem_Click(sender, e);
+        }
 
+        private void scTaoThongBao_Click(object sender, EventArgs e)
+        {
+            player.Play();
+            pnlHienThi.Controls.Clear();
+            UserControlQuanLyThongBao uc = _serviceProvider.GetRequiredService<UserControlQuanLyThongBao>();
+            uc.Dock = DockStyle.Fill;
+            pnlHienThi.Controls.Add(uc);
+            uc.btnThem_Click(sender, e);
+        }
     }
 }

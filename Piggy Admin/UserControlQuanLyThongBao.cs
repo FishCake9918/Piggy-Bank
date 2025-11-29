@@ -91,7 +91,7 @@ namespace Piggy_Admin
             }
         }
 
-        private void btnThem_Click(object sender, EventArgs e)
+        public void btnThem_Click(object sender, EventArgs e)
         {
             // Kiểm tra xem người dùng có phải Admin không (dựa vào Context)
             if (!_userContext.IsAdmin || _userContext.MaAdmin == null)

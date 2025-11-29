@@ -1,32 +1,33 @@
 ﻿using System.Drawing;
-using System.Drawing.Printing;
 using System.Windows.Forms;
 
 namespace Piggy_Admin
 {
     partial class FrmThemSuaThongBao
     {
-        // ----------------------------------------------------
-        // KHAI BÁO BIẾN CONTROLS (ĐÃ SỬA LỖI)
-        // ----------------------------------------------------
         private System.ComponentModel.IContainer components = null;
-        private Label lblTieuDe;
-        private Label lblTieuDeTB;
-        private TextBox txtTieuDe;
-        private Label lblNoiDungTB;
-        private TextBox txtNoiDung;
-        private Button btnLuu;
-        private Button btnHuy;
-        private Label lblMaTB;
-        private Label lblMaThongBaoValue;
-        private Label lblRole;
-        private TextBox txtRole;
 
+        // --- CONTROL GIỮ NGUYÊN TÊN ---
+        private System.Windows.Forms.Label lblTieuDe; // Label Title trên Header
+        private System.Windows.Forms.Label lblTieuDeTB;
+        private System.Windows.Forms.TextBox txtTieuDe;
+        private System.Windows.Forms.Label lblNoiDungTB;
+        private System.Windows.Forms.TextBox txtNoiDung;
+        private System.Windows.Forms.Button btnLuu;
+        private System.Windows.Forms.Button btnHuy;
+        private System.Windows.Forms.Label lblMaTB;
+        private System.Windows.Forms.Label lblMaThongBaoValue;
+        private System.Windows.Forms.Label lblRole;
+        private System.Windows.Forms.TextBox txtRole;
+        private System.Windows.Forms.Button button1; // Nút đóng (Close)
+
+        // Control trang trí mới
+        private System.Windows.Forms.Panel pnlHeader;
+        private System.Windows.Forms.Panel pnlLine;
 
         protected override void Dispose(bool disposing)
         {
-            if (disposing && (components != null))
-                components.Dispose();
+            if (disposing && (components != null)) components.Dispose();
             base.Dispose(disposing);
         }
 
@@ -34,181 +35,219 @@ namespace Piggy_Admin
 
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmThemSuaThongBao));
+            pnlHeader = new Panel();
+            button1 = new Button();
             lblTieuDe = new Label();
+            lblMaTB = new Label();
+            lblMaThongBaoValue = new Label();
             lblTieuDeTB = new Label();
             txtTieuDe = new TextBox();
             lblNoiDungTB = new Label();
             txtNoiDung = new TextBox();
-            btnLuu = new Button();
-            btnHuy = new Button();
-            lblMaTB = new Label();
-            lblMaThongBaoValue = new Label();
             lblRole = new Label();
             txtRole = new TextBox();
-            button1 = new Button();
+            pnlLine = new Panel();
+            btnLuu = new Button();
+            btnHuy = new Button();
+            pnlHeader.SuspendLayout();
             SuspendLayout();
+            // 
+            // pnlHeader
+            // 
+            pnlHeader.BackColor = Color.FromArgb(11, 60, 93);
+            pnlHeader.Controls.Add(button1);
+            pnlHeader.Controls.Add(lblTieuDe);
+            pnlHeader.Dock = DockStyle.Top;
+            pnlHeader.Location = new Point(2, 2);
+            pnlHeader.Margin = new Padding(4);
+            pnlHeader.Name = "pnlHeader";
+            pnlHeader.Size = new Size(623, 80);
+            pnlHeader.TabIndex = 0;
+            // 
+            // button1
+            // 
+            button1.Dock = DockStyle.Right;
+            button1.FlatAppearance.BorderSize = 0;
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            button1.ForeColor = Color.White;
+            button1.Location = new Point(548, 0);
+            button1.Margin = new Padding(4);
+            button1.Name = "button1";
+            button1.Size = new Size(75, 80);
+            button1.TabIndex = 1;
+            button1.Text = "✕";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // lblTieuDe
             // 
             lblTieuDe.AutoSize = true;
             lblTieuDe.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
-            lblTieuDe.ForeColor = SystemColors.ControlDarkDark;
-            lblTieuDe.Location = new Point(20, 39);
+            lblTieuDe.ForeColor = Color.White;
+            lblTieuDe.Location = new Point(30, 22);
+            lblTieuDe.Margin = new Padding(4, 0, 4, 0);
             lblTieuDe.Name = "lblTieuDe";
-            lblTieuDe.Size = new Size(298, 32);
-            lblTieuDe.TabIndex = 10;
+            lblTieuDe.Size = new Size(347, 38);
+            lblTieuDe.TabIndex = 0;
             lblTieuDe.Text = "THÔNG TIN THÔNG BÁO";
+            // 
+            // lblMaTB
+            // 
+            lblMaTB.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            lblMaTB.ForeColor = Color.FromArgb(11, 60, 93);
+            lblMaTB.Location = new Point(45, 89);
+            lblMaTB.Margin = new Padding(4, 0, 4, 0);
+            lblMaTB.Name = "lblMaTB";
+            lblMaTB.Size = new Size(150, 34);
+            lblMaTB.TabIndex = 11;
+            lblMaTB.Text = "Mã TB:";
+            // 
+            // lblMaThongBaoValue
+            // 
+            lblMaThongBaoValue.Font = new Font("Segoe UI", 13F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblMaThongBaoValue.ForeColor = Color.Gray;
+            lblMaThongBaoValue.Location = new Point(152, 83);
+            lblMaThongBaoValue.Margin = new Padding(4, 0, 4, 0);
+            lblMaThongBaoValue.Name = "lblMaThongBaoValue";
+            lblMaThongBaoValue.Size = new Size(150, 34);
+            lblMaThongBaoValue.TabIndex = 10;
+            lblMaThongBaoValue.Text = "(Tạo mới)";
             // 
             // lblTieuDeTB
             // 
-            lblTieuDeTB.AutoSize = true;
-            lblTieuDeTB.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblTieuDeTB.ForeColor = SystemColors.ControlDarkDark;
-            lblTieuDeTB.Location = new Point(20, 120);
+            lblTieuDeTB.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            lblTieuDeTB.ForeColor = Color.FromArgb(11, 60, 93);
+            lblTieuDeTB.Location = new Point(45, 140);
+            lblTieuDeTB.Margin = new Padding(4, 0, 4, 0);
             lblTieuDeTB.Name = "lblTieuDeTB";
-            lblTieuDeTB.Size = new Size(64, 20);
+            lblTieuDeTB.Size = new Size(150, 34);
             lblTieuDeTB.TabIndex = 9;
             lblTieuDeTB.Text = "Tiêu đề:";
             // 
             // txtTieuDe
             // 
-            txtTieuDe.Location = new Point(140, 117);
+            txtTieuDe.Font = new Font("Segoe UI", 11F);
+            txtTieuDe.Location = new Point(45, 178);
+            txtTieuDe.Margin = new Padding(4);
             txtTieuDe.Name = "txtTieuDe";
-            txtTieuDe.Size = new Size(350, 27);
-            txtTieuDe.TabIndex = 8;
+            txtTieuDe.Size = new Size(540, 37);
+            txtTieuDe.TabIndex = 2;
             // 
             // lblNoiDungTB
             // 
-            lblNoiDungTB.AutoSize = true;
-            lblNoiDungTB.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblNoiDungTB.ForeColor = SystemColors.ControlDarkDark;
-            lblNoiDungTB.Location = new Point(20, 160);
+            lblNoiDungTB.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            lblNoiDungTB.ForeColor = Color.FromArgb(11, 60, 93);
+            lblNoiDungTB.Location = new Point(45, 232);
+            lblNoiDungTB.Margin = new Padding(4, 0, 4, 0);
             lblNoiDungTB.Name = "lblNoiDungTB";
-            lblNoiDungTB.Size = new Size(78, 20);
-            lblNoiDungTB.TabIndex = 7;
+            lblNoiDungTB.Size = new Size(150, 34);
+            lblNoiDungTB.TabIndex = 8;
             lblNoiDungTB.Text = "Nội dung:";
             // 
             // txtNoiDung
             // 
-            txtNoiDung.Location = new Point(140, 157);
+            txtNoiDung.Font = new Font("Segoe UI", 11F);
+            txtNoiDung.Location = new Point(45, 270);
+            txtNoiDung.Margin = new Padding(4);
             txtNoiDung.Multiline = true;
             txtNoiDung.Name = "txtNoiDung";
-            txtNoiDung.Size = new Size(350, 200);
-            txtNoiDung.TabIndex = 6;
+            txtNoiDung.ScrollBars = ScrollBars.Vertical;
+            txtNoiDung.Size = new Size(540, 161);
+            txtNoiDung.TabIndex = 3;
+            // 
+            // lblRole
+            // 
+            lblRole.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            lblRole.ForeColor = Color.FromArgb(11, 60, 93);
+            lblRole.Location = new Point(35, 460);
+            lblRole.Margin = new Padding(4, 0, 4, 0);
+            lblRole.Name = "lblRole";
+            lblRole.Size = new Size(150, 34);
+            lblRole.TabIndex = 7;
+            lblRole.Text = "Người tạo:";
+            // 
+            // txtRole
+            // 
+            txtRole.BackColor = Color.WhiteSmoke;
+            txtRole.Font = new Font("Segoe UI", 11F);
+            txtRole.Location = new Point(193, 460);
+            txtRole.Margin = new Padding(4);
+            txtRole.Name = "txtRole";
+            txtRole.ReadOnly = true;
+            txtRole.Size = new Size(392, 37);
+            txtRole.TabIndex = 4;
+            // 
+            // pnlLine
+            // 
+            pnlLine.BackColor = Color.LightGray;
+            pnlLine.Location = new Point(45, 519);
+            pnlLine.Margin = new Padding(4);
+            pnlLine.Name = "pnlLine";
+            pnlLine.Size = new Size(540, 2);
+            pnlLine.TabIndex = 0;
             // 
             // btnLuu
             // 
-            btnLuu.BackColor = Color.ForestGreen;
+            btnLuu.BackColor = Color.FromArgb(70, 125, 167);
             btnLuu.FlatAppearance.BorderSize = 0;
             btnLuu.FlatStyle = FlatStyle.Flat;
-            btnLuu.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnLuu.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnLuu.ForeColor = Color.White;
-            btnLuu.Location = new Point(258, 430);
+            btnLuu.Location = new Point(381, 541);
+            btnLuu.Margin = new Padding(4);
             btnLuu.Name = "btnLuu";
-            btnLuu.Size = new Size(100, 40);
+            btnLuu.Size = new Size(204, 68);
             btnLuu.TabIndex = 5;
-            btnLuu.Text = "Lưu";
+            btnLuu.Text = "LƯU THÔNG BÁO";
             btnLuu.UseVisualStyleBackColor = false;
             btnLuu.Click += btnLuu_Click;
             // 
             // btnHuy
             // 
-            btnHuy.BackColor = Color.FromArgb(250, 110, 6);
+            btnHuy.BackColor = Color.FromArgb(240, 240, 240);
             btnHuy.FlatAppearance.BorderSize = 0;
             btnHuy.FlatStyle = FlatStyle.Flat;
-            btnHuy.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnHuy.ForeColor = Color.White;
-            btnHuy.Location = new Point(390, 430);
+            btnHuy.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnHuy.ForeColor = Color.FromArgb(64, 64, 64);
+            btnHuy.Location = new Point(41, 541);
+            btnHuy.Margin = new Padding(4);
             btnHuy.Name = "btnHuy";
-            btnHuy.Size = new Size(100, 40);
-            btnHuy.TabIndex = 4;
+            btnHuy.Size = new Size(114, 68);
+            btnHuy.TabIndex = 6;
             btnHuy.Text = "Hủy";
             btnHuy.UseVisualStyleBackColor = false;
             btnHuy.Click += btnHuy_Click;
             // 
-            // lblMaTB
-            // 
-            lblMaTB.AutoSize = true;
-            lblMaTB.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblMaTB.ForeColor = SystemColors.ControlDarkDark;
-            lblMaTB.Location = new Point(20, 80);
-            lblMaTB.Name = "lblMaTB";
-            lblMaTB.Size = new Size(58, 20);
-            lblMaTB.TabIndex = 3;
-            lblMaTB.Text = "Mã TB:";
-            // 
-            // lblMaThongBaoValue
-            // 
-            lblMaThongBaoValue.AutoSize = true;
-            lblMaThongBaoValue.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblMaThongBaoValue.Location = new Point(140, 80);
-            lblMaThongBaoValue.Name = "lblMaThongBaoValue";
-            lblMaThongBaoValue.Size = new Size(78, 20);
-            lblMaThongBaoValue.TabIndex = 2;
-            lblMaThongBaoValue.Text = "(Tạo mới)";
-            // 
-            // lblRole
-            // 
-            lblRole.AutoSize = true;
-            lblRole.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblRole.ForeColor = SystemColors.ControlDarkDark;
-            lblRole.Location = new Point(20, 380);
-            lblRole.Name = "lblRole";
-            lblRole.Size = new Size(84, 20);
-            lblRole.TabIndex = 1;
-            lblRole.Text = "Người tạo:";
-            // 
-            // txtRole
-            // 
-            txtRole.Location = new Point(140, 377);
-            txtRole.Name = "txtRole";
-            txtRole.Size = new Size(350, 27);
-            txtRole.TabIndex = 0;
-            txtRole.Text = "Admin";
-            // 
-            // button1
-            // 
-            button1.FlatAppearance.BorderSize = 0;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Image = (Image)resources.GetObject("button1.Image");
-            button1.Location = new Point(479, 12);
-            button1.Name = "button1";
-            button1.Size = new Size(29, 29);
-            button1.TabIndex = 11;
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
-            // 
             // FrmThemSuaThongBao
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
-            AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(213, 217, 247);
-            ClientSize = new Size(520, 490);
-            Controls.Add(button1);
-            Controls.Add(txtRole);
-            Controls.Add(lblRole);
-            Controls.Add(lblMaThongBaoValue);
-            Controls.Add(lblMaTB);
+            AutoScaleDimensions = new SizeF(144F, 144F);
+            AutoScaleMode = AutoScaleMode.Dpi;
+            BackColor = Color.White;
+            ClientSize = new Size(627, 650);
+            Controls.Add(pnlLine);
             Controls.Add(btnHuy);
             Controls.Add(btnLuu);
+            Controls.Add(txtRole);
+            Controls.Add(lblRole);
             Controls.Add(txtNoiDung);
             Controls.Add(lblNoiDungTB);
             Controls.Add(txtTieuDe);
             Controls.Add(lblTieuDeTB);
-            Controls.Add(lblTieuDe);
+            Controls.Add(lblMaThongBaoValue);
+            Controls.Add(lblMaTB);
+            Controls.Add(pnlHeader);
             FormBorderStyle = FormBorderStyle.None;
-            MaximizeBox = false;
-            MinimizeBox = false;
+            Margin = new Padding(4);
             Name = "FrmThemSuaThongBao";
+            Padding = new Padding(2);
             StartPosition = FormStartPosition.CenterParent;
             Text = "Quản lý thông báo";
+            pnlHeader.ResumeLayout(false);
+            pnlHeader.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
-
         #endregion
-
-        private Button button1;
     }
 }

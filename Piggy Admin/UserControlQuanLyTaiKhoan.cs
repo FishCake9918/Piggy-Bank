@@ -97,7 +97,7 @@ namespace Piggy_Admin
 
         // --- CRUD ---
 
-        private void btnThem_Click(object sender, EventArgs e)
+        public void btnThem_Click(object sender, EventArgs e)
         {
             if (!_userContext.IsAdmin) return;
 
