@@ -2,15 +2,15 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Runtime.InteropServices; // Import DLL cho kéo thả form
-using System.Threading.Tasks; // Cho async/await (HieuUngRungLac)
+using System.Runtime.InteropServices; 
+using System.Threading.Tasks; 
 using System.Windows.Forms;
-using System.Media; // Phát âm thanh
-using System.IO; // Thao tác file
-using Data; // Context và Entity models
-using Microsoft.EntityFrameworkCore; // Entity Framework Core
-using Microsoft.Extensions.DependencyInjection; // Dependency Injection (DI)
-using Piggy_Admin; // Để dùng ListThongBao, ItemThongBao, FrmTaiKhoan, LogHelper
+using System.Media; 
+using System.IO; 
+using Data; 
+using Microsoft.EntityFrameworkCore; 
+using Microsoft.Extensions.DependencyInjection; 
+using Piggy_Admin; 
 
 namespace Demo_Layout
 {
