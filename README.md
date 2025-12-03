@@ -1,0 +1,134 @@
+# 🐷 Piggy Bank - Ứng dụng Quản lý Tài chính Cá nhân
+
+![Piggy Bank Banner](https://via.placeholder.com/1000x300?text=Piggy+Bank+Desktop+App) 
+**Piggy Bank** là đồ án kết thúc học phần **Phát triển Ứng dụng Desktop** tại trường Đại học Kinh tế TP. Hồ Chí Minh (UEH). Ứng dụng được xây dựng trên nền tảng Windows Forms (WinForms) giúp người dùng cá nhân quản lý thu chi, lập ngân sách và theo dõi dòng tiền một cách trực quan, khoa học.
+
+---
+
+## 👥 Thành viên thực hiện (Nhóm 8)
+
+| STT | Họ và tên | MSSV | Vai trò |
+|:---:|:--- |:--- |:--- |
+| 1 | **Huỳnh Nguyễn Nhật Nam** | 31231020931 | Nhóm trưởng |
+| 2 | **Nguyễn Khánh Hoàng** | 31231025616 | Thành viên |
+| 3 | **Trần Bích Trâm** | 31231024970 | Thành viên |
+| 4 | **Lê Thanh Vy** | 31231022150 | Thành viên |
+
+**Giảng viên hướng dẫn:** TS. Nguyễn Mạnh Tuấn
+
+---
+
+## 🚀 Công nghệ sử dụng
+
+* **Ngôn ngữ:** C# (.NET Framework / .NET Core)
+* **Nền tảng:** Windows Forms (WinForms)
+* **Cơ sở dữ liệu:** Microsoft SQL Server
+* **ORM:** Entity Framework Core
+* **Thư viện hỗ trợ:**
+    * `LiveCharts`: Vẽ biểu đồ thống kê trực quan.
+    * `MiniExcel`: Xuất báo cáo ra file Excel nhanh chóng.
+    * `System.Media.SoundPlayer`: Hiệu ứng âm thanh tương tác.
+    * `Dependency Injection (DI)`: Quản lý các service và DbContext.
+* **Công cụ thiết kế:** Figma (Prototype), Visual Studio (IDE).
+
+---
+
+## ✨ Tính năng nổi bật
+
+Hệ thống được chia làm 2 phân hệ chính: **Người dùng (User)** và **Quản trị viên (Admin)**.
+
+### 👤 Dành cho Người dùng (User)
+1.  **Quản lý Tài khoản & Bảo mật:**
+    * Đăng ký/Đăng nhập (Có xác thực qua Email).
+    * Đổi mật khẩu, Xóa tài khoản.
+    * Quản lý hồ sơ cá nhân.
+2.  **Quản lý Tài khoản Thanh toán:**
+    * Thêm mới ví tiền (Tiền mặt, Ngân hàng, Ví điện tử...).
+    * Theo dõi số dư khả dụng.
+    * Chuyển số dư khi đóng tài khoản.
+3.  **Quản lý Giao dịch (Thu/Chi):**
+    * Ghi chép thu chi hàng ngày.
+    * Phân loại theo danh mục và đối tượng.
+    * Tìm kiếm và lọc giao dịch thông minh.
+4.  **Lập Ngân sách (Budgeting):**
+    * Thiết lập hạn mức chi tiêu theo tháng/năm.
+    * Cảnh báo khi chi tiêu vượt ngân sách.
+    * Biểu đồ so sánh thực chi và kế hoạch.
+5.  **Báo cáo & Thống kê:**
+    * Dashboard tổng quan tình hình tài chính.
+    * Biểu đồ tròn (Cơ cấu chi tiêu), Biểu đồ đường (Xu hướng), Biểu đồ cột (Thu/Chi).
+    * Xuất báo cáo chi tiết ra file Excel.
+6.  **UX/UI:**
+    * Hiệu ứng chuyển cảnh (Fade In/Out).
+    * Hiệu ứng rung lắc vui nhộn (Shake effect) trên Icon.
+    * Thông báo thời gian thực (Real-time notifications).
+
+### 🛡️ Dành cho Quản trị viên (Admin)
+1.  **Dashboard hệ thống:**
+    * Thống kê lượng người dùng truy cập.
+    * Phân tích tần suất đăng nhập và thời gian sử dụng trung bình.
+    * Biểu đồ mức độ quan tâm các chức năng.
+2.  **Quản lý Người dùng:**
+    * Xem danh sách người dùng.
+    * Khóa/Kích hoạt hoặc Xóa tài khoản vi phạm.
+3.  **Quản lý Thông báo:**
+    * Soạn thảo và gửi thông báo hệ thống đến toàn bộ người dùng.
+    * Quản lý lịch sử thông báo.
+
+---
+
+## 📸 Hình ảnh giao diện (Screenshots)
+
+### 1. Dashboard & Báo cáo
+*Giao diện tổng quan với biểu đồ trực quan*
+![Dashboard](https://via.placeholder.com/800x450?text=Giao+dien+Dashboard)
+
+### 2. Quản lý Giao dịch
+*Danh sách giao dịch với bộ lọc tìm kiếm*
+![Transaction](https://via.placeholder.com/800x450?text=Quan+ly+Giao+dich)
+
+### 3. Lập Ngân sách
+*Theo dõi tiến độ chi tiêu so với hạn mức*
+![Budget](https://via.placeholder.com/800x450?text=Quan+ly+Ngan+sach)
+
+### 4. Giao diện Admin
+*Thống kê hệ thống và quản lý người dùng*
+![Admin](https://via.placeholder.com/800x450?text=Giao+dien+Admin)
+
+---
+
+## ⚙️ Cài đặt và Hướng dẫn sử dụng
+
+### Yêu cầu hệ thống
+* Windows 10/11
+* .NET Framework / .NET Core Runtime
+* SQL Server (LocalDB hoặc Server chính)
+
+### Các bước cài đặt
+1.  **Clone repository:**
+    ```bash
+    git clone [https://github.com/username/PiggyBank-Desktop-App.git](https://github.com/username/PiggyBank-Desktop-App.git)
+    ```
+2.  **Cấu hình Cơ sở dữ liệu:**
+    * Mở SQL Server Management Studio (SSMS).
+    * Chạy script `Database/PiggyBankDB.sql` để tạo CSDL và dữ liệu mẫu.
+    * Cập nhật `ConnectionString` trong file `appsettings.json` hoặc `App.config` để trỏ đúng về SQL Server của bạn.
+3.  **Chạy ứng dụng:**
+    * Mở solution bằng Visual Studio.
+    * Build và Run (F5).
+
+---
+
+## 📂 Cấu trúc dự án (Sơ lược)
+
+```text
+PiggyBank/
+├── Data/                   # DbContext, Migrations (EF Core)
+├── Models/                 # Các thực thể (Entity classes: TaiKhoan, GiaoDich...)
+├── ViewModels/             # Các lớp DTO để hiển thị dữ liệu
+├── Services/               # Các dịch vụ (EmailService, UserContext...)
+├── UI/
+│   ├── UserControls/       # Các UserControl (GiaoDich, NganSach, BaoCao...)
+│   ├── Forms/              # Các Form chính (FrmMain, FrmLogin, FrmAdmin...)
+│   └── Helpers/            # Các tiện ích (LogHelper, FormatHelper...)
+└── Resources/              # Hình ảnh, Icon, Âm thanh
