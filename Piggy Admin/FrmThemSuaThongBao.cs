@@ -12,10 +12,10 @@ namespace Piggy_Admin
         public ThongBao ThongBaoHienTai { get; private set; }
         private bool la_cap_nhat; // Cờ đánh dấu đang Sửa hay Thêm
 
-        private readonly CurrentUserContext _userContext;
+        private readonly NguoiDungHienTai _userContext;
         private readonly IDbContextFactory<QLTCCNContext> _dbFactory;
 
-        public FrmThemSuaThongBao(CurrentUserContext userContext, IDbContextFactory<QLTCCNContext> dbFactory)
+        public FrmThemSuaThongBao(NguoiDungHienTai userContext, IDbContextFactory<QLTCCNContext> dbFactory)
         {
             InitializeComponent();
             _userContext = userContext;

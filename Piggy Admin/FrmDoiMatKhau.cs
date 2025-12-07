@@ -10,10 +10,10 @@ namespace Piggy_Admin
 {
     public partial class FrmDoiMatKhau : Form
     {
-        private readonly CurrentUserContext _userContext;
+        private readonly NguoiDungHienTai _userContext;
         private readonly IDbContextFactory<QLTCCNContext> _dbFactory;
 
-        public FrmDoiMatKhau(CurrentUserContext userContext, IDbContextFactory<QLTCCNContext> dbFactory)
+        public FrmDoiMatKhau(NguoiDungHienTai userContext, IDbContextFactory<QLTCCNContext> dbFactory)
         {
             InitializeComponent();
             _userContext = userContext;

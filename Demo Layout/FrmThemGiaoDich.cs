@@ -16,13 +16,13 @@ namespace Demo_Layout
         private int? _maGiaoDich = null; // ID giao dịch (null = Thêm mới)
         private readonly IDbContextFactory<QLTCCNContext> _dbFactory; // Factory tạo DbContext
         private readonly IServiceProvider _serviceProvider; // Service provider cho DI
-        private readonly CurrentUserContext _userContext; // Context người dùng hiện tại
+        private readonly NguoiDungHienTai _userContext; // Context người dùng hiện tại
 
         // --- CONSTRUCTOR 1: THÊM MỚI ---
         public FrmThemGiaoDich(
             IDbContextFactory<QLTCCNContext> dbFactory,
             IServiceProvider serviceProvider,
-            CurrentUserContext userContext) // DI: Tiêm các services
+            NguoiDungHienTai userContext) // DI: Tiêm các services
         {
             InitializeComponent();
             _dbFactory = dbFactory;
@@ -38,7 +38,7 @@ namespace Demo_Layout
         public FrmThemGiaoDich(
             IDbContextFactory<QLTCCNContext> dbFactory,
             IServiceProvider serviceProvider,
-            CurrentUserContext userContext, // DI: Tiêm User Context
+            NguoiDungHienTai userContext, // DI: Tiêm User Context
             int maGiaoDich,
             string tenGiaoDich,
             string ghiChu,

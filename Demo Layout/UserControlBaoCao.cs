@@ -25,12 +25,12 @@ namespace Demo_Layout
         private readonly IServiceProvider _serviceProvider;
 
         // Biến lưu thông tin người dùng đang đăng nhập
-        private readonly CurrentUserContext _userContext;
+        private readonly NguoiDungHienTai _userContext;
 
         // Cờ trạng thái để ngăn sự kiện chạy khi form chưa load xong
         private bool _isLoading = true;
 
-        public UserControlBaoCao(IDbContextFactory<QLTCCNContext> dbFactory, CurrentUserContext userContext)
+        public UserControlBaoCao(IDbContextFactory<QLTCCNContext> dbFactory, NguoiDungHienTai userContext)
         {
             InitializeComponent();
             _dbFactory = dbFactory;

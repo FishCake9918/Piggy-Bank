@@ -16,14 +16,14 @@ namespace Demo_Layout
     {
         private readonly IDbContextFactory<QLTCCNContext> _dbFactory;
         private readonly IServiceProvider _serviceProvider;
-        private readonly CurrentUserContext _userContext;
+        private readonly NguoiDungHienTai _userContext;
         private BindingSource bsDoiTuong = new BindingSource();
         private List<DoiTuongGiaoDich> _fullList = new List<DoiTuongGiaoDich>();
 
         public UserControlDoiTuongGiaoDich(
             IDbContextFactory<QLTCCNContext> dbFactory,
             IServiceProvider serviceProvider,
-            CurrentUserContext userContext)
+            NguoiDungHienTai userContext)
         {
             InitializeComponent();
             _dbFactory = dbFactory;

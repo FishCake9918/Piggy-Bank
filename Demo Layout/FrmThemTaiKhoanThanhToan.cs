@@ -14,10 +14,10 @@ namespace Demo_Layout
     public partial class FrmThemTaiKhoanThanhToan : Form
     {
         private readonly IDbContextFactory<QLTCCNContext> _dbFactory;
-        private readonly CurrentUserContext _userContext;
+        private readonly NguoiDungHienTai _userContext;
         public FrmThemTaiKhoanThanhToan(
             IDbContextFactory<QLTCCNContext> dbFactory,
-            CurrentUserContext userContext)
+            NguoiDungHienTai userContext)
         {
             InitializeComponent();
             _dbFactory = dbFactory;

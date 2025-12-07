@@ -36,7 +36,7 @@ namespace PhanQuyen
                         // 2. Kiểm tra kết quả trả về từ LoginForm
                         if (loginForm.DialogResult == DialogResult.OK)
                         {
-                            var userContext = Services.GetRequiredService<CurrentUserContext>();
+                            var userContext = Services.GetRequiredService<NguoiDungHienTai>();
                             Form mainForm = null;
 
                             if (userContext.IsAdmin)
@@ -115,7 +115,7 @@ namespace PhanQuyen
                     services.AddTransient<UserControlNganSach>();
                     services.AddTransient<FrmThemSuaNganSach>();
 
-                    services.AddSingleton<CurrentUserContext>();
+                    services.AddSingleton<NguoiDungHienTai>();
                     services.AddTransient<IEmailService, EmailService>();
                 });
     }

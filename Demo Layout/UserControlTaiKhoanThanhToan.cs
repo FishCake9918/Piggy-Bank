@@ -16,7 +16,7 @@ namespace Demo_Layout
     {
         private readonly IDbContextFactory<QLTCCNContext> _dbFactory;
         private readonly IServiceProvider _serviceProvider;
-        private readonly CurrentUserContext _userContext;
+        private readonly NguoiDungHienTai _userContext;
         private BindingSource bsTaiKhoan = new BindingSource();
         // List chứa dữ liệu để hiển thị (đã tính SoDuHienTai)
         private List<TaiKhoanDisplayModel> _displayList = new List<TaiKhoanDisplayModel>();
@@ -30,7 +30,7 @@ namespace Demo_Layout
         public UserControlTaiKhoanThanhToan(
             IDbContextFactory<QLTCCNContext> dbFactory,
             IServiceProvider serviceProvider,
-            CurrentUserContext userContext)
+            NguoiDungHienTai userContext)
         {
             InitializeComponent();
             _dbFactory = dbFactory;

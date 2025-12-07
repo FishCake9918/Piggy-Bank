@@ -14,12 +14,12 @@ namespace PhanQuyen
         // ==================================================================================
         private readonly IServiceProvider _serviceProvider;
         private readonly IDbContextFactory<QLTCCNContext> _dbFactory;
-        private readonly CurrentUserContext _userContext; // Nơi lưu phiên đăng nhập
+        private readonly NguoiDungHienTai _userContext; // Nơi lưu phiên đăng nhập
 
         public FrmDangNhap(
             IDbContextFactory<QLTCCNContext> dbFactory,
             IServiceProvider serviceProvider,
-            CurrentUserContext userContext)
+            NguoiDungHienTai userContext)
         {
             InitializeComponent();
             _dbFactory = dbFactory;
@@ -61,7 +61,7 @@ namespace PhanQuyen
             if (authResult.TaiKhoan != null)
             {
                 // Lưu thông tin người đăng nhập để dùng toàn cục
-                _userContext.SetCurrentUser(
+                _userContext.SetNguoiDung(
                     authResult.TaiKhoan,
                     authResult.MaAdmin,
                     authResult.MaNguoiDung,

@@ -17,7 +17,7 @@ namespace Demo_Layout
     {
         private readonly IDbContextFactory<QLTCCNContext> _dbFactory;
         private readonly IServiceProvider _serviceProvider;
-        private readonly CurrentUserContext _userContext;
+        private readonly NguoiDungHienTai _userContext;
         private BindingSource bsNganSach = new BindingSource();
         private List<NganSachViewModel> _fullList = new List<NganSachViewModel>();
         // Mã loại giao dịch Chi (dùng để tính toán số tiền đã chi)
@@ -26,7 +26,7 @@ namespace Demo_Layout
         public UserControlNganSach(
             IDbContextFactory<QLTCCNContext> dbFactory,
             IServiceProvider serviceProvider,
-            CurrentUserContext userContext)
+            NguoiDungHienTai userContext)
         {
             InitializeComponent();
             _dbFactory = dbFactory;

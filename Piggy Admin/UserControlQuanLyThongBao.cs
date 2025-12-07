@@ -16,12 +16,12 @@ namespace Piggy_Admin
         // ==================================================================================
         private readonly IDbContextFactory<QLTCCNContext> _dbFactory;
         private readonly IServiceProvider _serviceProvider;
-        private readonly CurrentUserContext _userContext;
+        private readonly NguoiDungHienTai _userContext;
 
         public UserControlQuanLyThongBao(
             IDbContextFactory<QLTCCNContext> dbFactory,
             IServiceProvider serviceProvider,
-            CurrentUserContext userContext)
+            NguoiDungHienTai userContext)
         {
             InitializeComponent();
             _dbFactory = dbFactory;

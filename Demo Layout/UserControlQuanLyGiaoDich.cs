@@ -17,7 +17,7 @@ namespace Demo_Layout
         // --- DI SERVICES ---
         private readonly IDbContextFactory<QLTCCNContext> _dbFactory;
         private readonly IServiceProvider _serviceProvider; 
-        private readonly CurrentUserContext _userContext; 
+        private readonly NguoiDungHienTai _userContext; 
 
         // Biến toàn cục
         private DataTable dtGiaoDich; 
@@ -27,7 +27,7 @@ namespace Demo_Layout
         public UserControlQuanLyGiaoDich(
             IDbContextFactory<QLTCCNContext> dbFactory,
             IServiceProvider serviceProvider,
-            CurrentUserContext userContext) 
+            NguoiDungHienTai userContext) 
         {
             InitializeComponent();
 

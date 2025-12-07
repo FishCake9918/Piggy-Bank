@@ -4,7 +4,7 @@ namespace Data
 {
     // Class Singleton này giữ thông tin người dùng đang đăng nhập
     // Đặt tại Project Data để cả Piggy Admin và Piggy Bank đều truy cập được
-    public class CurrentUserContext
+    public class NguoiDungHienTai
     {
         // Thông tin chung từ bảng TaiKhoan
         public int MaTaiKhoan { get; private set; }
@@ -21,11 +21,11 @@ namespace Data
         public bool IsLoggedIn => MaTaiKhoan > 0;
 
         // Hàm nạp dữ liệu sau khi đăng nhập thành công
-        public void SetCurrentUser(TaiKhoan taiKhoan, int? maAdmin, int? maNguoiDung, string displayName)
+        public void SetNguoiDung(TaiKhoan taiKhoan, int? maAdmin, int? maNguoiDung, string displayName)
         {
             if (taiKhoan == null)
             {
-                ClearUser();
+                XoaPhienDangNhap();
                 return;
             }
 
@@ -41,7 +41,7 @@ namespace Data
         }
 
         // Hàm đăng xuất / Xóa dữ liệu
-        public void ClearUser()
+        public void XoaPhienDangNhap()
         {
             this.MaTaiKhoan = 0;
             this.Email = null;
@@ -51,4 +51,4 @@ namespace Data
             this.MaNguoiDung = null;
         }
     }
-}
+}  

@@ -19,7 +19,7 @@ namespace Demo_Layout
         private readonly IDbContextFactory<QLTCCNContext> _dbFactory;
         private readonly IServiceProvider _serviceProvider;
         public event Action LogoutRequested;
-        private readonly CurrentUserContext _userContext;
+        private readonly NguoiDungHienTai _userContext;
 
         // --- CÁC BIẾN CHO THÔNG BÁO ---
         private ToolStripDropDown _popupThongBao;
@@ -44,7 +44,7 @@ namespace Demo_Layout
         private SoundPlayer player;
         private string soundFilePath = Path.Combine(Application.StartupPath, "Click.wav");
 
-        public FrmMain(IDbContextFactory<QLTCCNContext> dbFactory, IServiceProvider serviceProvider, CurrentUserContext userContext)
+        public FrmMain(IDbContextFactory<QLTCCNContext> dbFactory, IServiceProvider serviceProvider, NguoiDungHienTai userContext)
         {
             InitializeComponent();
             player = new SoundPlayer("Click.wav");

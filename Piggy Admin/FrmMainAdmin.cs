@@ -14,7 +14,7 @@ namespace Piggy_Admin
     {
         private readonly IDbContextFactory<QLTCCNContext> _dbFactory;
         private readonly IServiceProvider _serviceProvider;
-        private readonly CurrentUserContext _userContext;
+        private readonly NguoiDungHienTai _userContext;
 
         private SoundPlayer player;
         private string soundFilePath = Path.Combine(Application.StartupPath, "Click.wav");
@@ -26,7 +26,7 @@ namespace Piggy_Admin
         [DllImport("user32.dll")]
         public static extern bool ReleaseCapture();
 
-        public FrmMainAdmin(IDbContextFactory<QLTCCNContext> dbFactory, IServiceProvider serviceProvider, CurrentUserContext userContext)
+        public FrmMainAdmin(IDbContextFactory<QLTCCNContext> dbFactory, IServiceProvider serviceProvider, NguoiDungHienTai userContext)
         {
             InitializeComponent();
             _dbFactory = dbFactory;

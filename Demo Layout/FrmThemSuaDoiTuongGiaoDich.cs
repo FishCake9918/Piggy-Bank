@@ -11,11 +11,11 @@ namespace Demo_Layout
     {
         public Action OnDataSaved; // Callback để refresh dữ liệu ở form cha
         private readonly IDbContextFactory<QLTCCNContext> _dbFactory;
-        private readonly CurrentUserContext _userContext;
+        private readonly NguoiDungHienTai _userContext;
         private int _idDoiTuong = 0;
         public FrmThemSuaDoiTuongGiaoDich(
             IDbContextFactory<QLTCCNContext> dbFactory,
-            CurrentUserContext userContext)
+            NguoiDungHienTai userContext)
         {
             InitializeComponent();
             _dbFactory = dbFactory;

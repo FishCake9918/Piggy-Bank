@@ -133,9 +133,24 @@ CREATE TABLE THONG_BAO (
     NgayTao DATETIME DEFAULT GETDATE(),
     MaAdmin INT
 );
-GO
 
--- RÀNG BUỘC CHO QUAN HỆ NGOẠI
+CREATE TABLE NHAT_KY_HOAT_DONG ( 
+-- Khóa chính, tự động tăng 
+MaNhatKyHoatDong INT IDENTITY(1,1) NOT NULL, 
+-- Hành động (VD: 'DANG_NHAP', 'XOA_GIAO_DICH') 
+HanhDong NVARCHAR(50) NOT NULL, 
+-- Mô tả chi tiết (VD: 'User xóa giao dịch ID 100') 
+MoTa NVARCHAR(255) NULL, 
+-- Thời gian mặc định lấy giờ hiện tại của server 
+ThoiGian DATETIME DEFAULT GETDATE(), 
+-- Khóa ngoại (Cho phép NULL để nếu xóa User thì log không bị mất) 
+MaNguoiDung INT NULL, 
+-- Ràng buộc Khóa Chính 
+CONSTRAINT PK_NHAT_KY_HOAT_DONG PRIMARY KEY (MaNhatKyHoatDong) );
+
+
+
+-- RÀNG BUỘC KHÓA NGOẠI
 
 -- VAI TRÒ - TÀI KHOẢN
 ALTER TABLE TAI_KHOAN
@@ -266,6 +281,12 @@ ALTER TABLE THONG_BAO
 ADD CONSTRAINT FK_THONGBAO_ADMIN FOREIGN KEY (MaAdmin)
 REFERENCES ADMIN(MaAdmin)
 ON DELETE SET NULL;
+GO
+
+-- NHẬT KÝ HOẠT ĐỘNG - NGƯỜI DÙNG
+ALTER TABLE NHAT_KY_HOAT_DONG ADD CONSTRAINT FK_NHAT_KY_HOAT_DONG_NGUOI_DUNG FOREIGN KEY (MaNguoiDung) REFERENCES NGUOI_DUNG(MaNguoiDung) 
+ON DELETE SET NULL 
+ON UPDATE CASCADE; 
 GO
 
 USE QLTCCN;
@@ -452,10 +473,3 @@ GO
 INSERT INTO DOI_TUONG_GIAO_DICH_NGAN_SACH (MaDoiTuongGiaoDich, MaNganSach) VALUES
 (6, 3); -- Shopee (DTGD 6) -> Ngân sách Mua sắm (NS 3)
 GO
-
-
-
-
-
-
-

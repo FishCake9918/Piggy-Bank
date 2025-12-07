@@ -14,7 +14,7 @@ namespace Demo_Layout
         // 1. KHAI BÁO BIẾN & TRẠNG THÁI FORM
         // ==================================================================================
         private readonly IDbContextFactory<QLTCCNContext> _dbFactory; // Nhà máy tạo kết nối
-        private readonly CurrentUserContext _userContext;             // Thông tin người dùng hiện tại
+        private readonly NguoiDungHienTai _userContext;             // Thông tin người dùng hiện tại
 
         // Biến quan trọng: 
         // - Nếu null: Form đang ở chế độ THÊM MỚI
@@ -22,7 +22,7 @@ namespace Demo_Layout
         private int? _maDanhMucCanSua = null;
 
         // Constructor nhận các dependency (Dependency Injection)
-        public FrmThemSuaDanhMuc(IDbContextFactory<QLTCCNContext> dbFactory, CurrentUserContext userContext)
+        public FrmThemSuaDanhMuc(IDbContextFactory<QLTCCNContext> dbFactory, NguoiDungHienTai userContext)
         {
             InitializeComponent();
             _dbFactory = dbFactory;

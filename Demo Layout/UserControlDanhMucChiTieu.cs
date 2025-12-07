@@ -22,10 +22,10 @@ namespace Demo_Layout
         private readonly IServiceProvider _serviceProvider;
 
         // Biến lưu thông tin người dùng hiện tại (để biết danh mục của ai)
-        private readonly CurrentUserContext _userContext;
+        private readonly NguoiDungHienTai _userContext;
 
         // Inject các dependency vào Constructor
-        public UserControlDanhMucChiTieu(IDbContextFactory<QLTCCNContext> dbFactory, IServiceProvider serviceProvider, CurrentUserContext userContext)
+        public UserControlDanhMucChiTieu(IDbContextFactory<QLTCCNContext> dbFactory, IServiceProvider serviceProvider, NguoiDungHienTai userContext)
         {
             InitializeComponent();
             _dbFactory = dbFactory;

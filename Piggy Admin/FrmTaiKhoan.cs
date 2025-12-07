@@ -9,7 +9,7 @@ namespace Piggy_Admin
 {
     public partial class FrmTaiKhoan : Form
     {
-        private readonly CurrentUserContext _userContext;
+        private readonly NguoiDungHienTai _userContext;
         private readonly IDbContextFactory<QLTCCNContext> _dbFactory;
         private readonly IServiceProvider _serviceProvider;
 
@@ -19,7 +19,7 @@ namespace Piggy_Admin
         private System.Windows.Forms.Timer _fadeTimer;
         private bool _isClosing = false;
 
-        public FrmTaiKhoan(CurrentUserContext userContext, IDbContextFactory<QLTCCNContext> dbFactory, IServiceProvider serviceProvider)
+        public FrmTaiKhoan(NguoiDungHienTai userContext, IDbContextFactory<QLTCCNContext> dbFactory, IServiceProvider serviceProvider)
         {
             InitializeComponent();
             _userContext = userContext;

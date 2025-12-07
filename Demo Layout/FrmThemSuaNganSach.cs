@@ -12,11 +12,11 @@ namespace Demo_Layout
     public partial class FrmThemSuaNganSach : Form
     {
         private readonly IDbContextFactory<QLTCCNContext> _dbFactory;
-        private readonly CurrentUserContext _userContext;
+        private readonly NguoiDungHienTai _userContext;
         private int _maNganSach = 0;
         public FrmThemSuaNganSach(
             IDbContextFactory<QLTCCNContext> dbFactory,
-            CurrentUserContext userContext)
+            NguoiDungHienTai userContext)
         {
             InitializeComponent();
             _dbFactory = dbFactory;
