@@ -211,7 +211,7 @@ namespace Piggy_Admin
 
         private void PerformLogout()
         {
-            _userContext.ClearUser(); // Xóa phiên đăng nhập
+            _userContext.XoaPhienDangNhap(); // Xóa phiên đăng nhập
             Close(); // Đóng form hồ sơ
             LogoutRequested?.Invoke(); // Thông báo ra ngoài để đóng form chính
         }
