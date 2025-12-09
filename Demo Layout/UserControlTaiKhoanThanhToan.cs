@@ -108,12 +108,13 @@ namespace Demo_Layout
             }
             catch (Exception ex) { MessageBox.Show("Lỗi tải danh sách tài khoản: " + ex.Message); }
         }
-
+        //Hàm CalculateCurrentBalance = Tính số dư hiện tại 
         private decimal CalculateCurrentBalance(int maTaiKhoan, decimal soDuBanDau)
         {
             using (var db = _dbFactory.CreateDbContext())
             {
                 // Tính tổng Thu (MaLoaiGiaoDich == 1)
+                //totalThu = Tổng thu; totalChi = Tổng chi
                 decimal totalThu = db.GiaoDichs
                     .Where(g => g.MaTaiKhoanThanhToan == maTaiKhoan && g.MaLoaiGiaoDich == 1)
                     .Sum(g => (decimal?)g.SoTien) ?? 0;
@@ -185,7 +186,7 @@ namespace Demo_Layout
                 bsTaiKhoan.DataSource = _displayList;
             bsTaiKhoan.ResetBindings(false);
         }
-
+        // Hàm UpdateSoDuChiTiet = Cập nhật số dư chi tiết
         private void UpdateSoDuChiTiet(int selectedTaiKhoanId)
         {
             if (lblSoDuBanDauDetail == null || lblSoDuKhaDungDetail == null) return;
@@ -195,7 +196,7 @@ namespace Demo_Layout
                 lblSoDuKhaDungDetail.Text = "Số dư Khả dụng: --";
                 return;
             }
-            // Lấy dữ liệu từ hai nguồn list khác nhau
+            // Lấy dữ liệu từ hai nguồn danh sách khác nhau
             var accountFromDb = _fullAccountsList.FirstOrDefault(t => t.MaTaiKhoanThanhToan == selectedTaiKhoanId);
             var accountFromDisplayList = _displayList.FirstOrDefault(t => t.MaTaiKhoanThanhToan == selectedTaiKhoanId);
 
