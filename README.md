@@ -1,6 +1,6 @@
 # 🐷 Piggy Bank - Ứng dụng Quản lý Tài chính Cá nhân
 
-![Piggy Bank Banner](https://via.placeholder.com/1000x300?text=Piggy+Bank+Desktop+App) 
+
 **Piggy Bank** là đồ án kết thúc học phần **Phát triển Ứng dụng Desktop** tại trường Đại học Kinh tế TP. Hồ Chí Minh (UEH). Ứng dụng được xây dựng trên nền tảng Windows Forms (WinForms) giúp người dùng cá nhân quản lý thu chi, lập ngân sách và theo dõi dòng tiền một cách trực quan, khoa học.
 
 ---
@@ -81,19 +81,19 @@ Hệ thống được chia làm 2 phân hệ chính: **Người dùng (User)** v
 
 ### 1. Dashboard & Báo cáo
 *Giao diện tổng quan với biểu đồ trực quan*
-![Dashboard](https://via.placeholder.com/800x450?text=Giao+dien+Dashboard)
+
 
 ### 2. Quản lý Giao dịch
 *Danh sách giao dịch với bộ lọc tìm kiếm*
-![Transaction](https://via.placeholder.com/800x450?text=Quan+ly+Giao+dich)
+
 
 ### 3. Lập Ngân sách
 *Theo dõi tiến độ chi tiêu so với hạn mức*
-![Budget](https://via.placeholder.com/800x450?text=Quan+ly+Ngan+sach)
+
 
 ### 4. Giao diện Admin
 *Thống kê hệ thống và quản lý người dùng*
-![Admin](https://via.placeholder.com/800x450?text=Giao+dien+Admin)
+
 
 ---
 
