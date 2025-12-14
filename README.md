@@ -140,3 +140,21 @@ PiggyBank/
 │   ├── Forms/              # Các Form chính (FrmMain, FrmLogin, FrmAdmin...)
 │   └── Helpers/            # Các tiện ích (LogHelper, FormatHelper...)
 └── Resources/              # Hình ảnh, Icon, Âm thanh
+
+---
+
+## 📘 Tài liệu Hướng dẫn Sử dụng (User Guide)
+
+Nhằm hỗ trợ người dùng và giảng viên dễ dàng tiếp cận và sử dụng ứng dụng **Piggy Bank**, nhóm đã xây dựng tài liệu **Hướng dẫn Sử dụng dành cho người dùng cuối**.
+
+Tài liệu này tập trung mô tả:
+- Ứng dụng **Piggy Bank** gồm những chức năng chính nào
+- Mỗi màn hình/chức năng trong ứng dụng dùng để làm gì
+- Các thao tác cơ bản khi sử dụng: nhấn nút nào, nhập thông tin ở đâu
+- Hình ảnh minh họa trực quan cho từng chức năng chính
+
+👉 **Xem tài liệu chi tiết tại:**  
+[`HDSD.md`](HDSD.md)
+
+---
+
