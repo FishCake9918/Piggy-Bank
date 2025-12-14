@@ -127,22 +127,6 @@ Hệ thống được chia làm 2 phân hệ chính: **Người dùng (User)** v
 
 ---
 
-## 📂 Cấu trúc dự án (Sơ lược)
-
-```text
-PiggyBank/
-├── Data/                   # DbContext, Migrations (EF Core)
-├── Models/                 # Các thực thể (Entity classes: TaiKhoan, GiaoDich...)
-├── ViewModels/             # Các lớp DTO để hiển thị dữ liệu
-├── Services/               # Các dịch vụ (EmailService, UserContext...)
-├── UI/
-│   ├── UserControls/       # Các UserControl (GiaoDich, NganSach, BaoCao...)
-│   ├── Forms/              # Các Form chính (FrmMain, FrmLogin, FrmAdmin...)
-│   └── Helpers/            # Các tiện ích (LogHelper, FormatHelper...)
-└── Resources/              # Hình ảnh, Icon, Âm thanh
-
----
-
 ## 📘 Tài liệu Hướng dẫn Sử dụng (User Guide)
 
 Nhằm hỗ trợ người dùng và giảng viên dễ dàng tiếp cận và sử dụng ứng dụng **Piggy Bank**, nhóm đã xây dựng tài liệu **Hướng dẫn Sử dụng dành cho người dùng cuối**.
@@ -157,4 +141,23 @@ Tài liệu này tập trung mô tả:
 [`HDSD.md`](HDSD.md)
 
 ---
+
+## 📂 Cấu trúc dự án (Sơ lược)
+
+```text
+PiggyBank/
+├── Data/                   # Lớp xử lý dữ liệu, DbContext, Entity Framework
+├── Demo Layout/            # Prototype giao diện, demo bố cục màn hình
+├── PhanQuyen/              # Xử lý phân quyền (User / Admin)
+├── Piggy Admin/            # Phân hệ dành cho Quản trị viên
+│
+├── Demo Layout.sln         # File solution của Visual Studio
+├── HDSD.md                 # Tài liệu Hướng dẫn Sử dụng cho người dùng cuối
+├── QLTCCN.sql              # Script tạo Cơ sở dữ liệu và dữ liệu mẫu
+├── README.md               # Tài liệu giới thiệu dự án
+└── blank-default-pfp-*.png # Ảnh đại diện mặc định
+
+---
+
+
 
