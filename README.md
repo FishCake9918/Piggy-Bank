@@ -80,18 +80,26 @@ Hệ thống được chia làm 2 phân hệ chính: **Người dùng (User)** v
 ## 📸 Hình ảnh giao diện (Screenshots)
 
 ### 1. Dashboard & Báo cáo
+<img width="1226" height="733" alt="{C80321FF-5397-4F0E-91EE-3F4E307737A3}" src="https://github.com/user-attachments/assets/a92c1713-f0da-42d9-80e7-1ae7a266d87b" />
+
 *Giao diện tổng quan với biểu đồ trực quan*
 
 
 ### 2. Quản lý Giao dịch
+<img width="1229" height="732" alt="{921C5D9C-6701-42DD-8A93-E44FBDDAA3A8}" src="https://github.com/user-attachments/assets/a8b5c99f-e122-4337-8ef3-3a9976891eac" />
+
 *Danh sách giao dịch với bộ lọc tìm kiếm*
 
 
 ### 3. Lập Ngân sách
+<img width="1226" height="730" alt="{4AA4A9A3-4796-4098-BA12-AF753354E0A7}" src="https://github.com/user-attachments/assets/91cefad2-2e81-4acc-8705-324bd2536fd5" />
+
 *Theo dõi tiến độ chi tiêu so với hạn mức*
 
 
 ### 4. Giao diện Admin
+<img width="1535" height="815" alt="{50CB9F72-10FE-43D1-8D17-EC2787C2CF31}" src="https://github.com/user-attachments/assets/af4cf00f-adea-4487-a56d-60ce73607b0d" />
+
 *Thống kê hệ thống và quản lý người dùng*
 
 
